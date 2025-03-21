@@ -1,0 +1,35 @@
+---
+title: "Cursos por Semana"
+output: 
+  html_document:
+    theme: flatly  # Tema predeterminado de Bootstrap
+    css: styles.css  # Archivo de estilos
+---
+
+# 📅 Cursos organizados por semanas
+
+Aquí puedes ver la lista de semanas y sus materiales:
+
+::: semana
+<h2>Semana 1<h2>
+
+<p>📖 Tema: Introducción a R y R Markdown</p>
+
+<a href="cursos/semana1.pdf" class="btn">Ver Material</a>
+:::
+
+::: semana
+<h2>Semana 2</h2>
+
+<p>📊 Tema: Visualización de datos con ggplot2</p>
+
+<a href="cursos/semana2.pdf" class="btn">Ver Material</a>
+:::
+
+::: semana
+<h2>Semana 3</h2>
+
+<p>📝 Tema: Reportes dinámicos con R Markdown</p>
+
+<a href="cursos/semana3.pdf" class="btn">Ver Material</a>
+:::

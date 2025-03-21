@@ -1,7 +1,0 @@
----
-title: "Mi Página con Quarto"
-format: html
----
-
-# ¡Bienvenido a mi página!
-Esta es una página web creada con **Quarto** y publicada en **GitHub Pages**.

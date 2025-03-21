@@ -1,0 +1,15 @@
+---
+title: "Semana 2"
+output: html_document
+---
+
+# 📅 Semana 2: Visualización con `ggplot2`
+
+## 📊 Temas:
+- Gráficos de dispersión
+- Diagramas de caja
+- Histogramas
+
+📂 **Materiales**:  
+- 📜 [Descargar PDF](cursos/semana2.pdf)  
+- 🎥 [Ver Video](https://youtu.be/ejemplo2)
