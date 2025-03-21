@@ -1,0 +1,18 @@
+---
+title: "Semana 2 - Sesión Teórica"
+output: html_document
+---
+
+# 📖 Teoría - Semana 2
+
+Bienvenidos a la sesión teórica de la Semana 1.  
+En esta sección aprenderemos los conceptos fundamentales de R.
+
+## 🔍 Contenido
+- Introducción a R
+- Operaciones básicas
+- Instalación de paquetes
+
+📂 **Materiales**:  
+- 📜 [Descargar PDF](cursos/semana1_teoria.pdf)  
+- 🎥 [Ver Video](https://youtu.be/ejemplo1)

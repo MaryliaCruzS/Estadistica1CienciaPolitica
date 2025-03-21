@@ -1,16 +1,32 @@
 name: "Estadistica1CienciaPolitica"
 output_dir: "docs"  # Carpeta donde se guardarán los archivos HTML
 navbar:
-  title: "Cursos por Semana"
+  title: "Estadística 1 para el Análisis Político"
   left:
     - text: "Inicio"
       href: index.html
+      
     - text: "Sobre el Curso"
       href: about.html
+      
+    - text: "Semana 1"
+      menu:
+      - text: "Sesión Teórica"
+        href: semana1_teorica.html
+        
     - text: "Semana 2"
-      href: semana2.html
+      menu:
+      - text: "Sesión Teórica"
+        href: semana2_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana2_practica.html
+        
     - text: "Semana 3"
-      href: semana3.html
+      menu:
+      - text: "Sesión Teórica"
+        href: semana3_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana3_practica.html
 
 output:
   html_document:
