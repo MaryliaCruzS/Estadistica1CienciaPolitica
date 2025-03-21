@@ -1,34 +1,15 @@
 ---
-title: "Estadística 1 para el Análisis Político"
+title: "Estadística para el Análisis Político 1"
 output: 
   html_document:
     theme: flatly  # Tema predeterminado de Bootstrap
     css: styles.css  # Archivo de estilos
 ---
 
+![](portada.png)
 
-Aquí puedes ver la lista de temas que revisaremos a lo largo del semestre y sus materiales:
+¡Hola a [tod\@s](mailto:tod@s){.email}!,
 
+Antes de empezar, quiero darles la bievenida al curso "Estadística para el Análisis Político 1". Mi objetivo es que vean la estadística como una herramienta poderosa para entender la complejidad del mundo, analizar datos y tomar mejores decisiones.
 
-<h2>Semana 1<h2>
-
-<p>📖 Tema: Introducción al curso, y a R y R Markdown</p>
-
-<a href="cursos/semana1_teorica.html" class="btn">Ver Material</a>
-
-
-
-<h2>Semana 2</h2>
-
-<p>📊 Tema: Estadística Descriptiva</p>
-
-<a href="cursos/semana2_teorica.html" class="btn">Ver Material</a>
-
-
-
-<h2>Semana 3</h2>
-
-<p>📝 Tema: Medidas de dispersión</p>
-
-<a href="cursos/semana3_teorica.html" class="btn">Ver Material</a>
-:::
+La estadística está en todas partes y, si le dan una oportunidad, les puede abrir muchas puertas en su vida académica y profesional.Lo más importante es que vengan con curiosidad y mente abierta.

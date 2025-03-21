@@ -3,10 +3,27 @@ title: "Sobre el Curso"
 output: html_document
 ---
 
-# 📅 Sobre el Curso
+📂 *Tips para el curso*:
 
-Bienvenido al curso. Aquí exploraremos cómo usar R Markdown para generar reportes.
+- Llegar temprano a tus clases tanto en la sesiones teòricas como a las prácticas dirigidas.
 
-📂 **Materiales de la semana**:
-- 📜 [Descargar PDF](cursos/semana1.pdf)
-- 🎥 [Ver Video](https://youtu.be/ejemplo)
+- Prestar atención.
+
+- Preguntar ante cualquier duda.
+
+📂 **Materiales del curso**:
+- 📜 [Descargar el sílabo]()
+
+
+
+#📅 Fechas de evaluaciones continuas
+-
+- 
+-
+-
+-
+
+#📅 Fechas de Prácticas Calificadas
+-
+-
+-
