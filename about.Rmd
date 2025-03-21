@@ -1,0 +1,12 @@
+---
+title: "Sobre el Curso"
+output: html_document
+---
+
+# 📅 Sobre el Curso
+
+Bienvenido al curso. Aquí exploraremos cómo usar R Markdown para generar reportes.
+
+📂 **Materiales de la semana**:
+- 📜 [Descargar PDF](cursos/semana1.pdf)
+- 🎥 [Ver Video](https://youtu.be/ejemplo)

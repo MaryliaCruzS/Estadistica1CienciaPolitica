@@ -3,7 +3,7 @@ title: "Semana 3"
 output: html_document
 ---
 
-# 📅 Semana 2: Visualización con `ggplot2`
+# 📅 Semana 3: Visualización con `ggplot2`
 
 ## 📊 Temas:
 - Gráficos de dispersión
