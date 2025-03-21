@@ -1,7 +1,7 @@
 name: "Estadistica1CienciaPolitica"
 output_dir: "docs"  # Carpeta donde se guardarán los archivos HTML
 navbar:
-  title: "Estadística 1 para el Análisis Político"
+  title: "Estadística para el Análisis Político 1"
   left:
     - text: "Inicio"
       href: index.html

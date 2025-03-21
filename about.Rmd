@@ -3,7 +3,7 @@ title: "Sobre el Curso"
 output: html_document
 ---
 
-📂 *Tips para el curso*:
+📂 **Tips para el curso**:
 
 - Llegar temprano a tus clases tanto en la sesiones teòricas como a las prácticas dirigidas.
 
