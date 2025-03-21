@@ -1,4 +1,4 @@
-name: "mi-pagina-web"
+name: "Estadistica1CienciaPolitica"
 output_dir: "docs"  # Carpeta donde se guardarán los archivos HTML
 navbar:
   title: "Cursos por Semana"
