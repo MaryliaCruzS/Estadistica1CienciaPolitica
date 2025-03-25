@@ -6,8 +6,8 @@ navbar:
     - text: "Inicio"
       href: index.html
       
-    - text: "Sobre el Curso"
-      href: about.html
+    - text: "Pasos básicos"
+      href: pasosbasicos.html
       
     - text: "Semana 1"
       menu:
