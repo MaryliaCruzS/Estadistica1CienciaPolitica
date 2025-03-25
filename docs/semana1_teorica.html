@@ -383,7 +383,17 @@ library(tidyverse)</code></pre>
 <pre class="r"><code>conteo_continente &lt;- felicidad %&gt;%
   group_by(Continente) %&gt;%
   summarise(Cantidad = n()) %&gt;%
-  arrange(desc(Cantidad))</code></pre>
+  arrange(desc(Cantidad))
+conteo_continente</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   Continente    Cantidad
+##   &lt;chr&gt;            &lt;int&gt;
+## 1 Africa              41
+## 2 Asia                41
+## 3 Europe              40
+## 4 South America       12
+## 5 North America       11
+## 6 Oceania              2</code></pre>
 <pre class="{{r}}"><code>library(ggplot2)
 ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
   geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
@@ -469,10 +479,20 @@ tabla_frecuencia</code></pre>
 ## 2       Medio-Bajo 45       30.6
 ## 3       Medio-Alto 91       61.9
 ## 4             Alto  9        6.1</code></pre>
+</div>
+<div id="reto---nivel-3" class="section level1">
+<h1>Reto - Nivel 3</h1>
+<p>Elegir una variable categórica y otra numérica (la numérica puede ser
+una escala likert de 1 a 7) del Barómetro de las Américas 2023. Recuerda
+revisar el cuestionario.</p>
+<p><a href="https://www.vanderbilt.edu/lapop/peru.php"
+class="uri">https://www.vanderbilt.edu/lapop/peru.php</a></p>
 <div id="materiales-de-consulta" class="section level2">
 <h2>📂 Materiales de consulta:</h2>
 <ul>
-<li>📜 <a href="">Descargar PDF</a><br />
+<li>📜 <a
+href="https://www.vanderbilt.edu/lapop/peru/ABPer2023-Peru-Questionnaire-V9.2.3.0-Spa-230309-W.pdf">Cuestionario
+LAPOP</a><br />
 </li>
 <li>🎥 <a href="https://www.youtube.com/watch?v=P_BzArTUOWQ">Ver
 Video</a><br />

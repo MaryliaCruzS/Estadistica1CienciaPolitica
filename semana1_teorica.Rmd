@@ -80,6 +80,7 @@ conteo_continente <- felicidad %>%
   group_by(Continente) %>%
   summarise(Cantidad = n()) %>%
   arrange(desc(Cantidad))
+conteo_continente
 ```
 
 ``` {{r}}
@@ -187,10 +188,15 @@ tabla_frecuencia <- felicidad %>%
 tabla_frecuencia
 ```
 
+# Reto - Nivel 3 
+
+Elegir una variable categórica y otra numérica (la numérica puede ser una escala likert de 1 a 7) del Barómetro de las Américas 2023. Recuerda revisar el cuestionario.
+
+<https://www.vanderbilt.edu/lapop/peru.php>
 
 ## 📂 Materiales de consulta:
 
-- 📜 [Descargar PDF]()\
+- 📜 [Cuestionario LAPOP](https://www.vanderbilt.edu/lapop/peru/ABPer2023-Peru-Questionnaire-V9.2.3.0-Spa-230309-W.pdf)\
 - 🎥 [Ver Video](https://www.youtube.com/watch?v=P_BzArTUOWQ)\
 
 
