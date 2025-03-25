@@ -11,9 +11,9 @@ Instalar R y R Studio de acuerdo a las siguientes indicaciones: <https://posit.c
 
 ## 🧮 Aspectos básicos:
 
--   Entorno de R Studio:
+-   **Entorno de R Studio**:
 
--   Objetos: 
+-   **Objetos**: 
 
 Son las estructuras de datos donde se almacenan valores en R. Pueden ser vectores, listas, matrices, factores, data frames, entre otros. Se crean asignando valores con <- o =.
 
@@ -35,7 +35,7 @@ y
 
 
 
--   Funciones: Son bloques de código reutilizables que realizan tareas específicas. Pueden ser funciones predefinidas o personalizadas por el usuario.
+-   **Funciones**: Son bloques de código reutilizables que realizan tareas específicas. Pueden ser funciones predefinidas o personalizadas por el usuario.
 
 Ejemplo:
 
@@ -53,16 +53,105 @@ suma <- function(a, b) {
 suma(3, 5)  # Devuelve 8
 ```
 
+**Lista de funciones básicas en R**
 
--   Paquetes: Son colecciones de funciones, datos y documentación que amplían las capacidades de R. Se instalan con install.packages("nombre_del_paquete") y se cargan con library(nombre_del_paquete).
+**c() **→ Crea un vector
+
+``` {{r}}
+x=c(1,2,3,4)
+x
+```
+
+```{r}
+x=c(1,2,3,4)
+x
+```
+
+**length()** → Devuelve la longitud de un vector
+
+``` {{r}}
+length(x)
+```
+
+```{r}
+length(x)
+```
+
+
+**sum()** → Suma los elementos de un vector
+
+``` {{r}}
+sum(x)
+```
+
+```{r}
+sum(x)
+```
+
+**mean()** → Calcula la media
+
+``` {{r}}
+mean(x)
+```
+
+```{r}
+mean(x)
+```
+
+**median()** → Calcula la mediana
+
+``` {{r}}
+median(x)
+```
+
+```{r}
+median(x)
+```
+
+
+**sd()** → Calcula la desviación estándar
+
+``` {{r}}
+sd(x)
+```
+
+```{r}
+sd(x)
+```
+
+**sqrt()** → Raíz cuadrada
+
+``` {{r}}
+sqrt(x)
+```
+
+```{r}
+sqrt(x)
+```
+
+**round()** → Redondeo
+
+``` {{r}}
+round(x)
+```
+
+```{r}
+round(x)
+```
+
+
+-   **Paquetes**: Son colecciones de funciones, datos y documentación que amplían las capacidades de R. Se instalan con install.packages("nombre_del_paquete") y se cargan con library(nombre_del_paquete).
+
+Por ejemplo, el paquete *ggplot2* sirve para la creación de gráficos. 
 
 ``` {{r}}
 install.packages("ggplot2")
 library(ggplot2)
 ```
 
+A lo largo del curso aprenderemos distintos paquetes, te recomendamos aprender para que sirve cada uno y cuando se sugiere emplearlos.
 
--   Bases de datos:  Son estructuras de datos tabulares similares a las hojas de cálculo, donde cada columna es un vector del mismo tamaño pero puede contener distintos tipos de datos. Se crean con data.frame().
+-   **Bases de datos**:  Son estructuras de datos tabulares similares a las hojas de cálculo, donde cada columna es un vector del mismo tamaño pero puede contener distintos tipos de datos. Se crean con data.frame().
 
 ``` {{r}}
 datos <- data.frame(
@@ -77,13 +166,122 @@ datos <- data.frame(
 datos <- data.frame(
   Nombre = c("Ana", "Luis", "Carlos"),
   Edad = c(25, 30, 28),
-  Ciudad = c("Madrid", "Barcelona", "Valencia")
+  Ciudad = c("Arequipa", "Loreto", "Tacna")
 )
-
+datos
 ```
+
+
+**Abrir una base de datos desde el archivo**
+
+
+
+
+``` {{r}}
+library(rio)
+felicidad=import("felicidad.xlsx")
+```
+
+
+```{r}
+library(rio)
+felicidad=import("felicidad.xlsx")
+```
+
+**Comandos básicos para explorar una base de datos**
+
+**names()** → Muestra los nombres de las variables del Data Frame
+
+``` {{r}}
+names(felicidad)
+```
+
+```{r}
+names(felicidad)
+```
+
+**head()** → Muestra las primeras filas
+
+``` {{r}}
+head(felicidad)
+```
+
+```{r}
+head(felicidad)
+```
+
+**tail()** → Muestra las últimas filas
+
+``` {{r}}
+tail(felicidad)
+```
+
+```{r}
+tail(felicidad)
+```
+
+**str()** → Muestra la estructura del Data Frame
+
+``` {{r}}
+str(felicidad)
+```
+
+```{r}
+str(felicidad)
+```
+
+**summary()** → Muestra la estructura del Data Frame
+
+``` {{r}}
+summary(felicidad)
+```
+
+```{r}
+summary(felicidad)
+```
+
+**max()** → Muestra el máximo valor de una variable de una Data Frame
+``` {{r}}
+max(felicidad$Indice_de_felicidad, na.rm = TRUE)
+```
+
+```{r}
+max(felicidad$Indice_de_felicidad, na.rm = TRUE)
+```
+
+**which.maxx()** → Muestra cual es el máximo valor de una variable de una Data Frame
+
+``` {{r}}
+which.max(felicidad$Indice_de_felicidad)
+```
+
+
+
+**Funciones de ayuda**
+
+**help()** → Muestra la documentación de una función
+
+``` {{r}}
+help(mean)
+```
+
+**ls()** → Lista los objetos en el entorno
+
+``` {{r}}
+ls()
+```
+
+**rm()** → Elimina un objeto
+
+``` {{r}}
+rm()
+```
+
 
 
 ## 📂 Materiales de consulta:
 
-- 📜 [Descargar PDF](cursos/semana1_teoria.pdf)\
-- 🎥 [Ver Video](https://youtu.be/ejemplo1)
+- 📜 [Descargar PDF](https://cran.r-project.org/doc/contrib/rdebuts_es.pdf)\
+- 🎥 [Ver Video](https://www.youtube.com/watch?v=WCcHcWsMN1o&t=43s)\
+
+

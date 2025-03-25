@@ -239,7 +239,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Estadística 1 para el Análisis Político</a>
+      <a class="navbar-brand" href="index.html">Estadística para el Análisis Político 1</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -247,7 +247,7 @@ $(document).ready(function () {
   <a href="index.html">Inicio</a>
 </li>
 <li>
-  <a href="about.html">Sobre el Curso</a>
+  <a href="pasosbasicos.html">Pasos básicos</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -308,20 +308,176 @@ $(document).ready(function () {
 </div>
 
 
-<div id="teoría---semana-1" class="section level1">
-<h1>📖 Teoría - Semana 1</h1>
-<p>Bienvenidos a la sesión teórica de la Semana 1.<br />
-En esta sección aprenderemos los conceptos fundamentales de R.</p>
-<div id="contenido" class="section level2">
-<h2>🔍 Contenido</h2>
+<div id="variable" class="section level1">
+<h1>Variable</h1>
+<p>En estadística, una variable es cualquier característica, propiedad o
+atributo que puede tomar diferentes valores. Estos valores pueden ser
+numéricos o categóricos dependiendo del tipo de variable.</p>
+</div>
+<div id="tipos-de-variables" class="section level1">
+<h1>Tipos de variables</h1>
+</div>
+<div id="varibles-categóricas-o-cualitativas" class="section level1">
+<h1>Varibles categóricas o cualitativas:</h1>
+<p>Son aquellas que expresan cualidades, atributos o categorías sin un
+valor numérico asociado.</p>
+<p>Tipos de variables categóricas o cualitativas:</p>
+<p>✅ Nominales: No tienen un orden específico.</p>
+<p>Ejemplo: Color de ojos (azul, verde, marrón), estado civil (soltero,
+casado, divorciado).</p>
+<p>✅ Ordinales: Poseen un orden lógico, pero la diferencia entre
+categorías no es cuantificable.</p>
+<p>Ejemplo: Nivel de educación (básico, medio, superior), nivel de
+satisfacción (bajo, medio, alto).</p>
+</div>
+<div id="varibles-numéricas-o-cuantitativas" class="section level1">
+<h1>Varibles numéricas o cuantitativas</h1>
+<p>Son aquellas que representan cantidades y pueden medirse
+numéricamente.</p>
+<p>Tipos de variables numéricas o cuantitativas:</p>
+<p>✅ Discretas: Toman valores enteros y no admiten valores
+intermedios.</p>
+<p>Ejemplo: Número de hijos en una familia (0, 1, 2, 3, …), cantidad de
+autos en un estacionamiento. ✅ Continuas: Pueden tomar valores dentro
+de un rango infinito, incluyendo decimales.</p>
+<p>Ejemplo: Peso de una persona (65.7 kg, 70.2 kg, etc.), temperatura de
+una ciudad (20.5°C, 23.1°C).</p>
+</div>
+<div id="ejercicio-1" class="section level1">
+<h1>Ejercicio 1</h1>
+<p>La base de datos “Felicidad” (World Happiness Report) contiene
+información sobre los niveles de felicidad en diferentes países, basada
+en diversas variables.</p>
+<p>Analiza los tipos de variables que se encuentran en la base de datos
+“Felicidad”. Clasifícalas en cualitativas o cuantitativas y justifica tu
+respuesta.</p>
+<p>Explora las variables</p>
+<pre class="{{r}}"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+<pre class="r"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+</div>
+<div id="reto---nivel-1" class="section level1">
+<h1>Reto - Nivel 1</h1>
 <ul>
-<li>Introducción a R</li>
-<li>Operaciones básicas</li>
-<li>Instalación de paquetes</li>
+<li>Resume la cantidad de países por continente</li>
 </ul>
-<p>📂 <strong>Materiales</strong>:<br />
-- 📜 <a href="cursos/semana1_teoria.pdf">Descargar PDF</a><br />
-- 🎥 <a href="https://youtu.be/ejemplo1">Ver Video</a></p>
+<pre class="{{r}}"><code># Calcular la cantidad de países por continente
+library(tidyverse)
+conteo_continente &lt;- felicidad %&gt;%
+  group_by(Continente) %&gt;%
+  summarise(Cantidad = n()) %&gt;%
+  arrange(desc(Cantidad))</code></pre>
+<pre class="r"><code># Calcular la cantidad de países por continente
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>conteo_continente &lt;- felicidad %&gt;%
+  group_by(Continente) %&gt;%
+  summarise(Cantidad = n()) %&gt;%
+  arrange(desc(Cantidad))</code></pre>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +  # Colores atractivos
+  labs(title = &quot;Cantidad de Países por Continente&quot;, x = &quot;Continente&quot;, y = &quot;Número de Países&quot;) +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face=&quot;bold&quot;, size=14))</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +  # Colores atractivos
+  labs(title = &quot;Cantidad de Países por Continente&quot;, x = &quot;Continente&quot;, y = &quot;Número de Países&quot;) +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face=&quot;bold&quot;, size=14))</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>Resume el índice de felicidad.</li>
+</ul>
+<pre class="{{r}}"><code>summary(felicidad$Indice_de_felicidad)</code></pre>
+<pre class="r"><code>summary(felicidad$Indice_de_felicidad)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.364   4.702   5.868   5.578   6.479   7.736</code></pre>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill=&quot;skyblue&quot;, color=&quot;black&quot;) +
+  labs(title=&quot;Histograma de Felicidad&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_minimal()</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill=&quot;skyblue&quot;, color=&quot;black&quot;) +
+  labs(title=&quot;Histograma de Felicidad&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color=&quot;black&quot;) +
+  scale_fill_gradient(low=&quot;blue&quot;, high=&quot;red&quot;) +
+  labs(title=&quot;Histograma de Felicidad con Colores&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;, size=14),
+        axis.title = element_text(face=&quot;bold&quot;),
+        legend.position = &quot;none&quot;)  # Ocultar leyenda para estética</code></pre>
+<pre class="r"><code>ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color=&quot;black&quot;) +
+  scale_fill_gradient(low=&quot;blue&quot;, high=&quot;red&quot;) +
+  labs(title=&quot;Histograma de Felicidad con Colores&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;, size=14),
+        axis.title = element_text(face=&quot;bold&quot;),
+        legend.position = &quot;none&quot;)  # Ocultar leyenda para estética</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(count)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="reto---nivel-2" class="section level1">
+<h1>Reto - Nivel 2</h1>
+<p>Crea una variable ordinal a partir de su puntaje de felicidad.</p>
+<pre class="{{r}}"><code>felicidad &lt;- felicidad %&gt;%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c(&quot;Bajo&quot;, &quot;Medio-Bajo&quot;, &quot;Medio-Alto&quot;, &quot;Alto&quot;), 
+                             ordered_result = TRUE))  # Variable ordinal</code></pre>
+<pre class="r"><code>felicidad &lt;- felicidad %&gt;%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c(&quot;Bajo&quot;, &quot;Medio-Bajo&quot;, &quot;Medio-Alto&quot;, &quot;Alto&quot;), 
+                             ordered_result = TRUE))  # Variable ordinal</code></pre>
+<pre class="{{r}}"><code># Crear una tabla de frecuencia
+tabla_frecuencia &lt;- felicidad %&gt;%
+  count(Grados_felicidad) %&gt;%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia</code></pre>
+<pre class="r"><code># Crear una tabla de frecuencia
+tabla_frecuencia &lt;- felicidad %&gt;%
+  count(Grados_felicidad) %&gt;%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia</code></pre>
+<pre><code>##   Grados_felicidad  n Porcentaje
+## 1             Bajo  2        1.4
+## 2       Medio-Bajo 45       30.6
+## 3       Medio-Alto 91       61.9
+## 4             Alto  9        6.1</code></pre>
+<div id="materiales-de-consulta" class="section level2">
+<h2>📂 Materiales de consulta:</h2>
+<ul>
+<li>📜 <a href="">Descargar PDF</a><br />
+</li>
+<li>🎥 <a href="https://www.youtube.com/watch?v=P_BzArTUOWQ">Ver
+Video</a><br />
+</li>
+</ul>
 </div>
 </div>
 

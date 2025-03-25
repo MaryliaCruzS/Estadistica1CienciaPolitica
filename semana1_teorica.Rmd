@@ -3,17 +3,194 @@ title: "Semana 1 - Sesión Teórica"
 output: html_document
 ---
 
-# 📖 Teoría - Semana 1
 
-Bienvenidos a la sesión teórica de la Semana 1.  
-En esta sección aprenderemos los conceptos fundamentales de R.
+# Variable
 
-## 🔍 Contenido
-- Introducción a R
-- Operaciones básicas
-- Instalación de paquetes
+En estadística, una variable es cualquier característica, propiedad o atributo que puede tomar diferentes valores. Estos valores pueden ser numéricos o categóricos dependiendo del tipo de variable.
 
-📂 **Materiales**:  
-- 📜 [Descargar PDF](cursos/semana1_teoria.pdf)  
-- 🎥 [Ver Video](https://youtu.be/ejemplo1)
+
+# Tipos de variables
+
+
+# Varibles categóricas o cualitativas:
+
+Son aquellas que expresan cualidades, atributos o categorías sin un valor numérico asociado.
+
+Tipos de variables categóricas o cualitativas:
+
+✅ Nominales: No tienen un orden específico.
+
+Ejemplo: Color de ojos (azul, verde, marrón), estado civil (soltero, casado, divorciado).
+
+✅ Ordinales: Poseen un orden lógico, pero la diferencia entre categorías no es cuantificable.
+
+Ejemplo: Nivel de educación (básico, medio, superior), nivel de satisfacción (bajo, medio, alto).
+
+# Varibles numéricas o cuantitativas
+
+Son aquellas que representan cantidades y pueden medirse numéricamente.
+
+Tipos de variables numéricas o cuantitativas:
+
+✅ Discretas: Toman valores enteros y no admiten valores intermedios.
+
+Ejemplo: Número de hijos en una familia (0, 1, 2, 3, ...), cantidad de autos en un estacionamiento.
+✅ Continuas: Pueden tomar valores dentro de un rango infinito, incluyendo decimales.
+
+Ejemplo: Peso de una persona (65.7 kg, 70.2 kg, etc.), temperatura de una ciudad (20.5°C, 23.1°C).
+
+# Ejercicio 1
+
+La base de datos "Felicidad" (World Happiness Report) contiene información sobre los niveles de felicidad en diferentes países, basada en diversas variables.
+
+Analiza los tipos de variables que se encuentran en la base de datos "Felicidad". Clasifícalas en cualitativas o cuantitativas y justifica tu respuesta.
+
+Explora las variables
+
+``` {{r}}
+library(rio)
+felicidad=import("felicidad.xlsx")
+```
+
+
+```{r}
+library(rio)
+felicidad=import("felicidad.xlsx")
+```
+
+# Reto - Nivel 1
+
+- Resume la cantidad de países por continente
+
+
+
+``` {{r}}
+# Calcular la cantidad de países por continente
+library(tidyverse)
+conteo_continente <- felicidad %>%
+  group_by(Continente) %>%
+  summarise(Cantidad = n()) %>%
+  arrange(desc(Cantidad))
+```
+
+```{r}
+# Calcular la cantidad de países por continente
+library(tidyverse)
+conteo_continente <- felicidad %>%
+  group_by(Continente) %>%
+  summarise(Cantidad = n()) %>%
+  arrange(desc(Cantidad))
+```
+
+``` {{r}}
+library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  scale_fill_brewer(palette = "Set2") +  # Colores atractivos
+  labs(title = "Cantidad de Países por Continente", x = "Continente", y = "Número de Países") +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face="bold", size=14))
+```
+
+```{r}
+library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  scale_fill_brewer(palette = "Set2") +  # Colores atractivos
+  labs(title = "Cantidad de Países por Continente", x = "Continente", y = "Número de Países") +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face="bold", size=14))
+```
+
+- Resume el índice de felicidad.
+
+``` {{r}}
+summary(felicidad$Indice_de_felicidad)
+```
+
+```{r}
+summary(felicidad$Indice_de_felicidad)
+```
+
+``` {{r}}
+library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill="skyblue", color="black") +
+  labs(title="Histograma de Felicidad", x="Puntuación de Felicidad", y="Frecuencia") +
+  theme_minimal()
+```
+
+```{r}
+library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill="skyblue", color="black") +
+  labs(title="Histograma de Felicidad", x="Puntuación de Felicidad", y="Frecuencia") +
+  theme_minimal()
+```
+
+``` {{r}}
+library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color="black") +
+  scale_fill_gradient(low="blue", high="red") +
+  labs(title="Histograma de Felicidad con Colores", x="Puntuación de Felicidad", y="Frecuencia") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face="bold", size=14),
+        axis.title = element_text(face="bold"),
+        legend.position = "none")  # Ocultar leyenda para estética
+```
+
+```{r}
+ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color="black") +
+  scale_fill_gradient(low="blue", high="red") +
+  labs(title="Histograma de Felicidad con Colores", x="Puntuación de Felicidad", y="Frecuencia") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face="bold", size=14),
+        axis.title = element_text(face="bold"),
+        legend.position = "none")  # Ocultar leyenda para estética
+```
+
+# Reto - Nivel 2
+
+Crea una variable ordinal a partir de su puntaje de felicidad.
+
+``` {{r}}
+felicidad <- felicidad %>%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c("Bajo", "Medio-Bajo", "Medio-Alto", "Alto"), 
+                             ordered_result = TRUE))  # Variable ordinal
+```
+
+```{r}
+felicidad <- felicidad %>%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c("Bajo", "Medio-Bajo", "Medio-Alto", "Alto"), 
+                             ordered_result = TRUE))  # Variable ordinal
+```
+
+``` {{r}}
+# Crear una tabla de frecuencia
+tabla_frecuencia <- felicidad %>%
+  count(Grados_felicidad) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia
+```
+
+```{r}
+# Crear una tabla de frecuencia
+tabla_frecuencia <- felicidad %>%
+  count(Grados_felicidad) %>%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia
+```
+
+
+## 📂 Materiales de consulta:
+
+- 📜 [Descargar PDF]()\
+- 🎥 [Ver Video](https://www.youtube.com/watch?v=P_BzArTUOWQ)\
+
 

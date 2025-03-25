@@ -317,8 +317,8 @@ class="uri">https://posit.co/download/rstudio-desktop/</a></p>
 <div id="aspectos-básicos" class="section level2">
 <h2>🧮 Aspectos básicos:</h2>
 <ul>
-<li><p>Entorno de R Studio:</p></li>
-<li><p>Objetos:</p></li>
+<li><p><strong>Entorno de R Studio</strong>:</p></li>
+<li><p><strong>Objetos</strong>:</p></li>
 </ul>
 <p>Son las estructuras de datos donde se almacenan valores en R. Pueden
 ser vectores, listas, matrices, factores, data frames, entre otros. Se
@@ -334,9 +334,9 @@ y=x+z
 y</code></pre>
 <pre><code>## [1] 300</code></pre>
 <ul>
-<li>Funciones: Son bloques de código reutilizables que realizan tareas
-específicas. Pueden ser funciones predefinidas o personalizadas por el
-usuario.</li>
+<li><strong>Funciones</strong>: Son bloques de código reutilizables que
+realizan tareas específicas. Pueden ser funciones predefinidas o
+personalizadas por el usuario.</li>
 </ul>
 <p>Ejemplo:</p>
 <pre class="{{r}}"><code>suma &lt;- function(a, b) {
@@ -348,18 +348,58 @@ suma(3, 5)  # Devuelve 8</code></pre>
 }
 suma(3, 5)  # Devuelve 8</code></pre>
 <pre><code>## [1] 8</code></pre>
+<p><strong>Lista de funciones básicas en R</strong></p>
+<p><strong>c() </strong>→ Crea un vector</p>
+<pre class="{{r}}"><code>x=c(1,2,3,4)
+x</code></pre>
+<pre class="r"><code>x=c(1,2,3,4)
+x</code></pre>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<p><strong>length()</strong> → Devuelve la longitud de un vector</p>
+<pre class="{{r}}"><code>length(x)</code></pre>
+<pre class="r"><code>length(x)</code></pre>
+<pre><code>## [1] 4</code></pre>
+<p><strong>sum()</strong> → Suma los elementos de un vector</p>
+<pre class="{{r}}"><code>sum(x)</code></pre>
+<pre class="r"><code>sum(x)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<p><strong>mean()</strong> → Calcula la media</p>
+<pre class="{{r}}"><code>mean(x)</code></pre>
+<pre class="r"><code>mean(x)</code></pre>
+<pre><code>## [1] 2.5</code></pre>
+<p><strong>median()</strong> → Calcula la mediana</p>
+<pre class="{{r}}"><code>median(x)</code></pre>
+<pre class="r"><code>median(x)</code></pre>
+<pre><code>## [1] 2.5</code></pre>
+<p><strong>sd()</strong> → Calcula la desviación estándar</p>
+<pre class="{{r}}"><code>sd(x)</code></pre>
+<pre class="r"><code>sd(x)</code></pre>
+<pre><code>## [1] 1.290994</code></pre>
+<p><strong>sqrt()</strong> → Raíz cuadrada</p>
+<pre class="{{r}}"><code>sqrt(x)</code></pre>
+<pre class="r"><code>sqrt(x)</code></pre>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000</code></pre>
+<p><strong>round()</strong> → Redondeo</p>
+<pre class="{{r}}"><code>round(x)</code></pre>
+<pre class="r"><code>round(x)</code></pre>
+<pre><code>## [1] 1 2 3 4</code></pre>
 <ul>
-<li>Paquetes: Son colecciones de funciones, datos y documentación que
-amplían las capacidades de R. Se instalan con
+<li><strong>Paquetes</strong>: Son colecciones de funciones, datos y
+documentación que amplían las capacidades de R. Se instalan con
 install.packages(“nombre_del_paquete”) y se cargan con
 library(nombre_del_paquete).</li>
 </ul>
+<p>Por ejemplo, el paquete <em>ggplot2</em> sirve para la creación de
+gráficos.</p>
 <pre class="{{r}}"><code>install.packages(&quot;ggplot2&quot;)
 library(ggplot2)</code></pre>
+<p>A lo largo del curso aprenderemos distintos paquetes, te recomendamos
+aprender para que sirve cada uno y cuando se sugiere emplearlos.</p>
 <ul>
-<li>Bases de datos: Son estructuras de datos tabulares similares a las
-hojas de cálculo, donde cada columna es un vector del mismo tamaño pero
-puede contener distintos tipos de datos. Se crean con data.frame().</li>
+<li><strong>Bases de datos</strong>: Son estructuras de datos tabulares
+similares a las hojas de cálculo, donde cada columna es un vector del
+mismo tamaño pero puede contener distintos tipos de datos. Se crean con
+data.frame().</li>
 </ul>
 <pre class="{{r}}"><code>datos &lt;- data.frame(
   Nombre = c(&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carlos&quot;),
@@ -370,15 +410,88 @@ puede contener distintos tipos de datos. Se crean con data.frame().</li>
 <pre class="r"><code>datos &lt;- data.frame(
   Nombre = c(&quot;Ana&quot;, &quot;Luis&quot;, &quot;Carlos&quot;),
   Edad = c(25, 30, 28),
-  Ciudad = c(&quot;Madrid&quot;, &quot;Barcelona&quot;, &quot;Valencia&quot;)
-)</code></pre>
+  Ciudad = c(&quot;Arequipa&quot;, &quot;Loreto&quot;, &quot;Tacna&quot;)
+)
+datos</code></pre>
+<pre><code>##   Nombre Edad   Ciudad
+## 1    Ana   25 Arequipa
+## 2   Luis   30   Loreto
+## 3 Carlos   28    Tacna</code></pre>
+<p><strong>Abrir una base de datos desde el archivo</strong></p>
+<pre class="{{r}}"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+<pre class="r"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+<p><strong>Comandos básicos para explorar una base de datos</strong></p>
+<p><strong>names()</strong> → Muestra los nombres de las variables del
+Data Frame</p>
+<pre class="{{r}}"><code>names(felicidad)</code></pre>
+<pre class="r"><code>names(felicidad)</code></pre>
+<pre><code>## [1] &quot;Country&quot;             &quot;Indice_de_felicidad&quot; &quot;Continente&quot;</code></pre>
+<p><strong>head()</strong> → Muestra las primeras filas</p>
+<pre class="{{r}}"><code>head(felicidad)</code></pre>
+<pre class="r"><code>head(felicidad)</code></pre>
+<pre><code>##       Country Indice_de_felicidad    Continente
+## 1     Finland               7.736        Europe
+## 2     Denmark               7.521        Europe
+## 3     Iceland               7.515        Europe
+## 4      Sweden               7.345        Europe
+## 5 Netherlands               7.306        Europe
+## 6  Costa Rica               7.274 North America</code></pre>
+<p><strong>tail()</strong> → Muestra las últimas filas</p>
+<pre class="{{r}}"><code>tail(felicidad)</code></pre>
+<pre class="r"><code>tail(felicidad)</code></pre>
+<pre><code>##          Country Indice_de_felicidad Continente
+## 142     Botswana               3.438     Africa
+## 143     Zimbabwe               3.396     Africa
+## 144       Malawi               3.260     Africa
+## 145      Lebanon               3.188       Asia
+## 146 Sierra Leone               2.998     Africa
+## 147  Afghanistan               1.364       Asia</code></pre>
+<p><strong>str()</strong> → Muestra la estructura del Data Frame</p>
+<pre class="{{r}}"><code>str(felicidad)</code></pre>
+<pre class="r"><code>str(felicidad)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    147 obs. of  3 variables:
+##  $ Country            : chr  &quot;Finland&quot; &quot;Denmark&quot; &quot;Iceland&quot; &quot;Sweden&quot; ...
+##  $ Indice_de_felicidad: num  7.74 7.52 7.51 7.34 7.31 ...
+##  $ Continente         : chr  &quot;Europe&quot; &quot;Europe&quot; &quot;Europe&quot; &quot;Europe&quot; ...</code></pre>
+<p><strong>summary()</strong> → Muestra la estructura del Data Frame</p>
+<pre class="{{r}}"><code>summary(felicidad)</code></pre>
+<pre class="r"><code>summary(felicidad)</code></pre>
+<pre><code>##    Country          Indice_de_felicidad  Continente       
+##  Length:147         Min.   :1.364       Length:147        
+##  Class :character   1st Qu.:4.702       Class :character  
+##  Mode  :character   Median :5.868       Mode  :character  
+##                     Mean   :5.578                         
+##                     3rd Qu.:6.479                         
+##                     Max.   :7.736</code></pre>
+<p><strong>max()</strong> → Muestra el máximo valor de una variable de
+una Data Frame</p>
+<pre class="{{r}}"><code>max(felicidad$Indice_de_felicidad, na.rm = TRUE)</code></pre>
+<pre class="r"><code>max(felicidad$Indice_de_felicidad, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 7.736</code></pre>
+<p><strong>which.maxx()</strong> → Muestra cual es el máximo valor de
+una variable de una Data Frame</p>
+<pre class="{{r}}"><code>which.max(felicidad$Indice_de_felicidad)</code></pre>
+<p><strong>Funciones de ayuda</strong></p>
+<p><strong>help()</strong> → Muestra la documentación de una función</p>
+<pre class="{{r}}"><code>help(mean)</code></pre>
+<p><strong>ls()</strong> → Lista los objetos en el entorno</p>
+<pre class="{{r}}"><code>ls()</code></pre>
+<p><strong>rm()</strong> → Elimina un objeto</p>
+<pre class="{{r}}"><code>rm()</code></pre>
 </div>
 <div id="materiales-de-consulta" class="section level2">
 <h2>📂 Materiales de consulta:</h2>
 <ul>
-<li>📜 <a href="cursos/semana1_teoria.pdf">Descargar PDF</a><br />
+<li>📜 <a
+href="https://cran.r-project.org/doc/contrib/rdebuts_es.pdf">Descargar
+PDF</a><br />
 </li>
-<li>🎥 <a href="https://youtu.be/ejemplo1">Ver Video</a></li>
+<li>🎥 <a
+href="https://www.youtube.com/watch?v=WCcHcWsMN1o&amp;t=43s">Ver
+Video</a><br />
+</li>
 </ul>
 </div>
 </div>
