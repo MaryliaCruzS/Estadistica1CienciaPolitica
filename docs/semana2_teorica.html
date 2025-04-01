@@ -32,6 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -310,6 +312,529 @@ $(document).ready(function () {
 
 <div id="estadística-descriptiva" class="section level1">
 <h1>Estadística Descriptiva</h1>
+<p>La estadística descriptiva es un conjunto de técnicas numéricas y
+gráficas para describir y analizar un grupo de datos. Utilizamos las
+medidas de tendencia central y de dispersión para informar sobre cómo se
+comportan los datos. Se pueden describir bases de datos extraídas a
+partir de una encuesta o en un registro.</p>
+<p><strong>Preguntas claves para describir</strong></p>
+<p>Si los individuos son los objetos descritos por un conjunto de datos.
+Los individuos pueden ser personas, pero también pueden ser animales o
+cosas.(Filas) Y una variable es cualquier característica de un
+individuo. Una variable puede tomar distintos valores para distintos
+individuos.(Columnas)</p>
+<ul>
+<li><p>¿Quién? ¿Qué individuos describen los datos? ¿Cuántos individuos
+aparecen en los datos?</p></li>
+<li><p>¿Qué? ¿Cuántas variables contienen los datos? ¿Cuáles son las
+definiciones exactas de dichas variables? ¿En qué unidades se ha
+registrado cada variable? El peso, por ejemplo, se puede expresar en
+kilogramos, en quintales o en toneladas.</p></li>
+<li><p>¿Por qué? ¿Qué propósito se persigue con estos datos? ¿Queremos
+responder alguna pregunta concreta? ¿Queremos obtener conclusiones so-
+bre unos individuos de los que no tenemos realmente datos?</p></li>
+</ul>
+<p><strong>Medidas de tendencia central</strong></p>
+<p>A las medidas de centralidad también se les conoce también como
+medidas de tendencia central</p>
+<p>Las medidas de tendencia central (moda, mediana y media) muestran la
+medición más típica o representativa de una determinada distribución
+(Agresti y Finlay 1997)</p>
+<p>Un estadístico de tendencia central proporciona una estimación de la
+puntuación típica, común o normal encontrada en una distribución de
+puntuaciones en bruto (Ritchey 2008)</p>
+<p>Por lo general, la descripción de la distribución de una variables
+incluye una medida de su centro o tendencia central (Nota: Aunque pueda
+sonar extraño, esto también aplica para las variables categóricas
+nominales y ordinales)</p>
+<p>Las medidas más comunes de esta tendencia central son:</p>
+<ul>
+<li>Moda</li>
+<li>Mediana</li>
+<li>Media o Promedio</li>
+</ul>
+<p>Utilizaremos la base de datos de LAPOP para extraer las medidas de
+tendencia central</p>
+<p><a
+href="https://www.vanderbilt.edu/lapop/peru/ABPer2023-Peru-Questionnaire-V9.2.3.0-Spa-230309-W.pdf"
+class="uri">https://www.vanderbilt.edu/lapop/peru/ABPer2023-Peru-Questionnaire-V9.2.3.0-Spa-230309-W.pdf</a></p>
+<p>Emplearemos las siguientes dos preguntas :</p>
+<p><img src="protesta.png" width="336" /></p>
+<p><img src="e5.png" width="432" /></p>
+</div>
+<div
+id="preparando-las-variables-a-utilizar-de-la-base-de-datos-de-lapop-2023"
+class="section level1">
+<h1>Preparando las variables a utilizar de la base de datos de LAPOP
+2023</h1>
+<pre class="{{r}}"><code>library(rio)
+data=import(&quot;PER_2023_LAPOP.sav&quot;)</code></pre>
+<pre class="r"><code>library(rio)
+data=import(&quot;PER_2023_LAPOP.sav&quot;)</code></pre>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>as.numeric</strong></span> para solicitar dar
+el formato de variable numérica.</li>
+</ul>
+<pre class="{{r}}"><code>data$manifestaciones_ley=as.numeric(data$e5)
+data$manifestaciones_ley=as.numeric(data$manifestaciones_ley)</code></pre>
+<pre class="r"><code>data$manifestaciones_ley=as.numeric(data$e5)
+data$manifestaciones_ley=as.numeric(data$manifestaciones_ley)</code></pre>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>as.factor</strong></span> para solicitar dar
+el formato de variable factor o categorica.</li>
+</ul>
+<pre class="{{r}}"><code>data$protesta=(data$prot3)
+data$protesta=as.factor(data$protesta)</code></pre>
+<p>Si la variable es categórica, se requiere definir sus valores.</p>
+<pre class="{{r}}"><code>data$protesta=factor(data$protesta,levels = levels(data$protesta),
+                labels = c(&quot;Sí ha participado&quot;,&quot;No ha participado&quot;),
+                ordered = F)</code></pre>
+<pre class="r"><code>data$protesta=(data$prot3)
+data$protesta=as.factor(data$protesta)
+data$protesta=factor(data$protesta,levels = levels(data$protesta),
+                labels = c(&quot;Sí ha participado&quot;,&quot;No ha participado&quot;),
+                ordered = F)</code></pre>
+</div>
+<div id="moda" class="section level1">
+<h1>Moda</h1>
+<ul>
+<li>La Moda es el valor que ocurre con mayor frecuencia</li>
+<li>Es particularmente útil con variables categóricas nominales y
+categóricas ordinales</li>
+<li>A esta mayor frecuencia de un determinado valor corresponde el
+significado de centralidad en variables categóricas</li>
+</ul>
+<p><em>Moda en R Studio</em></p>
+<p>Usamos el comando <span
+style="color:red"><strong>table</strong></span> para solicitar una tabla
+de frencuencias e identificar el valor más alto.</p>
+<pre class="{{r}}"><code>table(data$protesta)</code></pre>
+<pre class="r"><code>table(data$protesta)</code></pre>
+<pre><code>## 
+## Sí ha participado No ha participado 
+##               180              1354</code></pre>
+<pre class="{{r}}"><code>table(data$protesta) #No tiene sentido generar una tabla de variables numéricas.</code></pre>
+<pre class="r"><code>table(data$protesta)</code></pre>
+<pre><code>## 
+## Sí ha participado No ha participado 
+##               180              1354</code></pre>
+<div id="moda-en-r-studio-2" class="section level2">
+<h2>Moda en R Studio (2)</h2>
+<ul>
+<li>Otra forma con el paquete <span
+style="color:green"><strong>dplyr</strong></span></li>
+</ul>
+<pre class="{{r}}"><code>install.packages(&quot;dplyr&quot;)
+library(dplyr)</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<ul>
+<li>Usamos el pipe <strong>%&gt;%</strong> para ordenar los
+comandos.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  count(protesta=protesta, name = &quot;Frecuencia&quot;) ## Paso 2: Pido una tabla de frecuencia de la variable continent</code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  count(protesta=protesta, name = &quot;Frecuencia&quot;) ## Paso 2: Pido una tabla de frecuencia de la variable continent</code></pre>
+<pre><code>##            protesta Frecuencia
+## 1 Sí ha participado        180
+## 2 No ha participado       1354
+## 3              &lt;NA&gt;          1</code></pre>
+</div>
+<div id="moda-en-r-studio-3" class="section level2">
+<h2>Moda en R Studio (3)</h2>
+<ul>
+<li>Otra forma con el paquete <span
+style="color:red"><strong>mutate</strong></span> para crear una nueva
+variable.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                     
+count(protesta=protesta, name = &quot;Frecuencia&quot;) %&gt;%  mutate(Porcentaje=Frecuencia/sum(Frecuencia)*100)  </code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  count(protesta=protesta, name = &quot;Frecuencia&quot;) %&gt;%   ## Paso 2: Pido una tabla de frecuencia de la variable continent
+  mutate(Porcentaje=Frecuencia/sum(Frecuencia)*100)  ## Paso 3: Creo una columna de %. Hasta aquí ya tienen una tabla simple. </code></pre>
+<pre><code>##            protesta Frecuencia  Porcentaje
+## 1 Sí ha participado        180 11.72638436
+## 2 No ha participado       1354 88.20846906
+## 3              &lt;NA&gt;          1  0.06514658</code></pre>
+</div>
+<div id="mediana" class="section level2">
+<h2>Mediana</h2>
+<ul>
+<li><p>La Mediana es el punto medio de una distribución, es decir el
+valor que divide a la distribución en dos partes iguales.</p></li>
+<li><p>Por lo tanto, debajo de ese valor se ubica el 50% de los casos y
+por encima de ese valor se ubica el otro 50% de los casos El cálculo de
+la Mediana es posible o tiene sentido cuando la variable que se está
+analizando es por lo menos ordinal.</p></li>
+</ul>
+</div>
+<div id="cálculo-de-la-mediana" class="section level2">
+<h2>Cálculo de la Mediana</h2>
+<p>Para hallar la Mediana de una distribución se necesita:</p>
+<ol style="list-style-type: decimal">
+<li><p>Ordenar todas las observaciones de la mínima a la máxima (lista
+ordenada)</p></li>
+<li><p>Si el número de observaciones es impar, entonces la mediana es la
+observación central de la lista ordenada.</p></li>
+<li><p>Para hallar la observación central (por lo tanto, el valor de la
+mediana), se usa la siguiente fórmula: (n + 1) / 2</p></li>
+<li><p>Si el número de observaciones es par, la mediana es el promedio
+(o la media) de las dos observaciones centrales de la lista
+ordenada.</p></li>
+</ol>
+</div>
+<div id="cálculo-de-la-mediana-cuando-el-número-es-impar"
+class="section level2">
+<h2>Cálculo de la Mediana cuando el número es impar</h2>
+<p>Tengo 11 números.</p>
+<p><img src="impar.png" fig-align="center" width="438" /></p>
+</div>
+<div id="cálculo-de-la-mediana-cuando-el-número-es-par"
+class="section level2">
+<h2>Cálculo de la Mediana cuando el número es par</h2>
+<p>Tengo 20 números.</p>
+<p><img src="par.png" fig-align="center" width="488" /></p>
+</div>
+<div id="mediana-en-r-studio" class="section level2">
+<h2>Mediana en R Studio</h2>
+<p>Usamos el comando <span
+style="color:red"><strong>median</strong></span> para solicitar la
+mediana.</p>
+<pre class="{{r}}"><code>median(data$manifestaciones_ley,na.rm=T)</code></pre>
+<pre class="r"><code>median(data$manifestaciones_ley,na.rm=T)</code></pre>
+<pre><code>## [1] 6</code></pre>
+<p>Otra forma con el paquete <span
+style="color:green"><strong>dplyr</strong></span></p>
+<pre class="{{r}}"><code>install.packages(&quot;dplyr&quot;)
+library(dplyr)</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>summarize</strong></span> para resumir la
+información.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Mediana=median(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Mediana=median(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre><code>##   Mediana
+## 1       6</code></pre>
+</div>
+<div id="media" class="section level2">
+<h2>Media</h2>
+<p>La media o el promedio es la suma de todas las mediciones (valores)
+divididas por el número total de mediciones u observaciones</p>
+<ul>
+<li>Fórmula para el cálculo de la Media (Promedio):</li>
+</ul>
+<p><img src="promedio.png" width="406" /></p>
+</div>
+<div id="media-en-r-studio" class="section level2">
+<h2>Media en R Studio</h2>
+<p>Usamos el comando <span
+style="color:red"><strong>media</strong></span> para solicitar la
+media</p>
+<pre class="{{r}}"><code>mean(data$manifestaciones_ley,na.rm=T)</code></pre>
+<pre class="r"><code>mean(data$manifestaciones_ley,na.rm=T)</code></pre>
+<pre><code>## [1] 6.158585</code></pre>
+<p>Otra forma con el paquete <span
+style="color:green"><strong>dplyr</strong></span></p>
+<pre class="{{r}}"><code>install.packages(&quot;dplyr&quot;)
+library(dplyr)</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>summarize</strong></span> para resumir la
+información.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre><code>##   Promedio
+## 1 6.158585</code></pre>
+</div>
+<div id="media-vs.-mediana" class="section level2">
+<h2>Media vs. mediana</h2>
+<ul>
+<li><p>La media es un estadístico sensible a los valores extremos.Basta
+que algún dato dentro de la muestra sea muy alto o muy bajo, el promedio
+se verá alterado.</p></li>
+<li><p>La mediana, en cambio, es un estadístico robusto. Aunque los
+extremos de los datos se vean alterados, la mediana permanece
+invariable.</p></li>
+</ul>
+</div>
+<div id="media-vs.-mediana-en-r-studio" class="section level2">
+<h2>Media vs. mediana en R studio</h2>
+<ul>
+<li><p>Usamos los paquetes <span
+style="color:green"><strong>dplyr</strong></span> y <span
+style="color:green"><strong>tidyverse</strong></span></p></li>
+<li><p>Usamos el pipe <strong>%&gt;%</strong> para ordenar los
+comandos.</p></li>
+</ul>
+<pre class="{{r}}"><code>install.packages(&quot;dplyr&quot;)
+library(dplyr)</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>summarize</strong></span> para resumir la
+información.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T))  ## Paso 2: Resumir </code></pre>
+<pre><code>##   Promedio Mediana
+## 1 6.158585       6</code></pre>
+</div>
+<div id="media-vs.-mediana-en-r-studio-en-una-tabla"
+class="section level2">
+<h2>Media vs. mediana en R studio en una tabla</h2>
+<ul>
+<li><p>Usamos el paquete <span
+style="color:green"><strong>kableExtra</strong></span></p></li>
+<li><p>Usamos los comandos <span
+style="color:red"><strong>kable</strong></span> y <span
+style="color:red"><strong>kable_styling</strong></span> para elaborar
+una tabla.</p></li>
+</ul>
+<pre class="{{r}}"><code>library(kableExtra)</code></pre>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T)) %&gt;%   ## Paso 2: Resumir 
+  kable() %&gt;%  # Paso 3: Convierte la tabla en código HTML
+  kable_styling()# Paso 4: Se visualiza mejor la tabla.Esto te servirá cuando utilices Rmd dado que este crear un archivo HTML.</code></pre>
+<pre class="r"><code>library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T)) %&gt;%   ## Paso 2: Resumir 
+  kable() %&gt;%  # Paso 3: Convierte la tabla en código HTML
+  kable_styling()# Paso 4: Se visualiza mejor la tabla.Esto te servirá cuando utilices Rmd dado que este crear un archivo HTML.</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Promedio
+</th>
+<th style="text-align:right;">
+Mediana
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6.158584
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="media-vs.-mediana-en-r-studio-por-grupos"
+class="section level2">
+<h2>Media vs. mediana en R studio por grupos</h2>
+<ul>
+<li>Usamos el comando <span
+style="color:red"><strong>group_by</strong></span> para referir los
+grupos en los que deseamos resumir la información.</li>
+</ul>
+<pre class="{{r}}"><code>data %&gt;%                      ## Paso 1: DATA 
+  group_by(protesta) %&gt;%   
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T))</code></pre>
+<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+  group_by(protesta) %&gt;%   
+  summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T))</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   protesta          Promedio Mediana
+##   &lt;fct&gt;                &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Sí ha participado     7.42       8
+## 2 No ha participado     5.99       6
+## 3 &lt;NA&gt;                  9          9</code></pre>
+</div>
+<div id="gráfico-histograma" class="section level2">
+<h2>Gráfico : Histograma</h2>
+<p><em>Para variables numéricas</em></p>
+<ol style="list-style-type: decimal">
+<li>Instalar el paquete <span
+style="color:green"><strong>ggplot2</strong></span></li>
+</ol>
+<pre class="{{r}}"><code>install.packages(&quot;ggplot2&quot;)
+library(ggplot2)</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>El comando <span style="color:red"><strong>aes</strong></span>
+denomina a las coordenadas ‘x’ y ‘y’.</li>
+</ol>
+<pre class="{{r}}"><code>ggplot(data, aes(x=manifestaciones_ley))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>El comando <span
+style="color:red"><strong>geom_histogram</strong></span> genera el
+histograma.</li>
+</ol>
+<pre class="{{r}}"><code>ggplot(data, aes(x=manifestaciones_ley)) + geom_histogram()</code></pre>
+<pre class="r"><code>ggplot(data, aes(x=manifestaciones_ley)) + geom_histogram()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range
+## (`stat_bin()`).</code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="gráfico-histograma-por-grupos" class="section level2">
+<h2>Gráfico : Histograma por grupos</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>El comando <span
+style="color:red"><strong>geom_histogram</strong></span> genera el
+histograma. Se emplea fill para colocar la variable factor.</li>
+</ol>
+<pre class="{{r}}"><code>ggplot(data, aes(x = manifestaciones_ley, fill = protesta)) +
+  geom_histogram(alpha = 0.6, position = &quot;dodge&quot;, bins = 20) +
+  labs(title = &quot;Histograma por Grupo&quot;, x = &quot;Valor&quot;, y = &quot;Frecuencia&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;))</code></pre>
+<pre class="r"><code>ggplot(data, aes(x = manifestaciones_ley, fill = protesta)) +
+  geom_histogram(alpha = 0.6, position = &quot;dodge&quot;, bins = 20) +
+  labs(title = &quot;Histograma por Grupo&quot;, x = &quot;Valor&quot;, y = &quot;Frecuencia&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;))</code></pre>
+<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range
+## (`stat_bin()`).</code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="gráfico-gráfico-de-barras" class="section level2">
+<h2>Gráfico : Gráfico de Barras</h2>
+<p><em>Para variables categóricas</em></p>
+<ol style="list-style-type: decimal">
+<li>Instalar el paquete <span
+style="color:green"><strong>ggplot2</strong></span></li>
+</ol>
+<pre class="{{r}}"><code>install.packages(&quot;ggplot2&quot;)
+library(ggplot2)</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>El comando <span style="color:red"><strong>aes</strong></span>
+denomina a las coordenadas ‘x’ y ‘y’.</li>
+</ol>
+<pre class="{{r}}"><code>ggplot(data, aes(x=protesta))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>El comando <span style="color:red"><strong>geom_bar</strong></span>
+genera el gráfico de barras.</li>
+</ol>
+<pre class="{{r}}"><code>ggplot(data = data, aes(x = protesta)) +
+  geom_bar(fill = &#39;red&#39;)</code></pre>
+<pre class="r"><code>ggplot(data = data, aes(x = protesta)) +
+  geom_bar(fill = &#39;red&#39;)</code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-con-porcentaje" class="section level2">
+<h2>Gráfico de barras con porcentaje</h2>
+<ol start="4" style="list-style-type: decimal">
+<li>El comando <span style="color:red"><strong>geom_bar</strong></span>
+genera el gráfico de barras.</li>
+</ol>
+<pre class="{{r}}"><code>tabla &lt;- data%&gt;%
+  count(protesta)%&gt;%
+  mutate(Porcentaje=round(n/sum(n)*100,1))
+
+
+# Crear gráfico de barras con ggplot2
+ggplot(tabla, aes(x = protesta, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(title = &quot;Distribución por Porcentaje&quot;, x = &quot;Grupo&quot;, y = &quot;Porcentaje&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;, &quot;green&quot;)) +
+  geom_text(aes(label = sprintf(&quot;%.1f%%&quot;, Porcentaje)), vjust = -0.5)</code></pre>
+<pre class="r"><code>tabla &lt;- data%&gt;%
+  count(protesta)%&gt;%
+  mutate(Porcentaje=round(n/sum(n)*100,1))
+
+
+# Crear gráfico de barras con ggplot2
+ggplot(tabla, aes(x = protesta, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(title = &quot;Distribución por Porcentaje&quot;, x = &quot;Grupo&quot;, y = &quot;Porcentaje&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;, &quot;green&quot;)) +
+  geom_text(aes(label = sprintf(&quot;%.1f%%&quot;, Porcentaje)), vjust = -0.5)</code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="gráfico-sin-na" class="section level2">
+<h2>Gráfico sin NA</h2>
+<ol start="5" style="list-style-type: decimal">
+<li>El comando !is.na significa no contar con datos perdidos.</li>
+</ol>
+<pre class="{{r}}"><code>tabla_sin_na &lt;- subset(tabla, !is.na(protesta))
+
+ggplot(tabla_sin_na, aes(x = protesta, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(title = &quot;Distribución por Porcentaje&quot;, x = &quot;Grupo&quot;, y = &quot;Porcentaje&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  geom_text(aes(label = sprintf(&quot;%.1f%%&quot;, Porcentaje)), vjust = -0.5)</code></pre>
+<pre class="r"><code>tabla_sin_na &lt;- subset(tabla, !is.na(protesta))
+
+ggplot(tabla_sin_na, aes(x = protesta, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(title = &quot;Distribución por Porcentaje&quot;, x = &quot;Grupo&quot;, y = &quot;Porcentaje&quot;) +
+  theme_minimal() +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;)) +
+  geom_text(aes(label = sprintf(&quot;%.1f%%&quot;, Porcentaje)), vjust = -0.5)</code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Más información en: <a
+href="https://www.sharpsightlabs.com/blog/barplot-r-geom_bar/"
+class="uri">https://www.sharpsightlabs.com/blog/barplot-r-geom_bar/</a></p>
+</div>
+<div id="gráfico-circulas-o-pie" class="section level2">
+<h2>Gráfico Circulas o Pie</h2>
+<pre class="{{r}}"><code>ggplot(tabla_sin_na, aes(x = &quot;&quot;, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;, width = 1) + 
+  coord_polar(theta = &quot;y&quot;) +  # Convierte a gráfico circular
+  theme_void() +  # Elimina fondo y ejes
+  labs(title = &quot;Gráfico de Pastel en R&quot;) +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;)) </code></pre>
+<pre class="r"><code>ggplot(tabla_sin_na, aes(x = &quot;&quot;, y = Porcentaje, fill = protesta)) +
+  geom_bar(stat = &quot;identity&quot;, width = 1) + 
+  coord_polar(theta = &quot;y&quot;) +  # Convierte a gráfico circular
+  theme_void() +  # Elimina fondo y ejes
+  labs(title = &quot;Gráfico de Pastel en R&quot;) +
+  scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;)) </code></pre>
+<p><img src="semana2_teorica_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="resumen-de-estadísticos-de-tendencia-central"
+class="section level2">
+<h2>Resumen de estadísticos de tendencia central</h2>
+<p><img src="resumen%20tendencia%20central.png" /></p>
+</div>
+<div id="resumen-de-estadísticos-de-tendencia-central-1"
+class="section level2">
+<h2>Resumen de estadísticos de tendencia central</h2>
+<p><img src="asimetria.png" fig-align="center" /></p>
+</div>
+<div id="reto---nivel-2" class="section level2">
+<h2>Reto - Nivel 2</h2>
+<p>Debido a que ya se han convocado las Elecciones Generales 2026 en el
+Perú, es fundamental analizar la cultura política de los ciudadanos en
+relación con los comicios. Para ello, se utilizará la base de datos de
+la Encuesta LAPOP 2023, la cual proporciona información clave sobre las
+percepciones y actitudes sobre las elecciones. Realice con los
+resultados un informe descriptivo. Utilice los gráficos aprendidos.</p>
+</div>
 </div>
 
 
