@@ -1,9 +1,16 @@
 ---
-title: "Semana 2 - Práctica Dirigida"
-output: html_document
+title: "Práctica dirigida 1"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
+    toc_depth: 3
+    theme: cosmo
+    highlight: textmate
+    always_allow_html: true
 ---
-
-# Práctica Dirigida 1
 
 <center><img src=" " width="200"/></center>
 
@@ -370,4 +377,3 @@ data%>%
 </a>
 
 <br></br> [Go to page beginning](#beginning)
-
