@@ -15,11 +15,11 @@ output: html_document
 
 # **1.¿Qué es el análisis descriptivo?**
 
-![](pd2_AnalisisDesc.png) 
+![](pd2_AnalisisDesc.PNG) 
 
 # **2.Nivel de medida de una variable**
 
-![](pd2_medVar.png) 
+![](pd2_medVar.PNG) 
 
 
 # **3.Importancia de visualización de datos**
@@ -33,18 +33,18 @@ tal es el caso de ggplot2 en R.
 
 [^1]: <https://www.data-to-viz.com/caveat/pie.html>
 
-![](pd2_herramientas.png) 
+![](pd2_herramientas.PNG) 
 
 Este interés por desarrollar técnicas de análisis masivo de datos y la
 comunicación de resultados cada vez más amigables y apta para todos los
 públicos dio pie a nuevas especialidades dentro de la ciencia de datos,
 como por ejemplo el data story telling
 
-![](pd2_datavis.png) 
+![](pd2_datavis.PNG) 
 
 ### **Gráficos por tipo de variables:**
 
-![](pd2_GrafTipoVar.png) 
+![](pd2_GrafTipoVar.PNG)
 
 # **4.Análisis descriptivo**
 
@@ -76,9 +76,9 @@ por fuera valores perdidos además de realizar otras modificaciones. Para
 realizar alguna investigación se debe usar la base de datos original que
 se encuentra en el siguiente [link](https://peru.oxfam.org/ENADES-2024).
 
-![](diccionario_enades20241.png) 
+![](diccionario_enades20241.PNG) 
 
-![](diccionario_enades20242.png) 
+![](diccionario_enades20242.PNG) 
 
 ```{r,warning=FALSE}
 library(rio) #Convocamos el paquete   
