@@ -15,15 +15,12 @@ output: html_document
 
 # **1.¿Qué es el análisis descriptivo?**
 
-```{r,echo=FALSE, out.width="80%",fig.align="center"}
-knitr::include_graphics("pd2_AnalisisDesc.png") 
-```
+![ ]("pd2_AnalisisDesc.png") 
 
 # **2.Nivel de medida de una variable**
 
-```{r,echo=FALSE, out.width="50%",fig.align="center"}
-knitr::include_graphics("pd2_medVar.png") 
-```
+![ ]("pd2_medVar.png") 
+
 
 # **3.Importancia de visualización de datos**
 
@@ -36,24 +33,18 @@ tal es el caso de ggplot2 en R.
 
 [^1]: <https://www.data-to-viz.com/caveat/pie.html>
 
-```{r,echo=FALSE, out.width="90%",fig.align="center"}
-knitr::include_graphics("pd2_herramientas.png") 
-```
+![ ]("pd2_herramientas.png") 
 
 Este interés por desarrollar técnicas de análisis masivo de datos y la
 comunicación de resultados cada vez más amigables y apta para todos los
 públicos dio pie a nuevas especialidades dentro de la ciencia de datos,
 como por ejemplo el data story telling
 
-```{r,echo=FALSE, out.width="90%",fig.align="center"}
-knitr::include_graphics("pd2_datavis.png") 
-```
+![ ]("pd2_datavis.png") 
 
 ### **Gráficos por tipo de variables:**
 
-```{r,echo=FALSE, out.width="60%",fig.align="center"}
-knitr::include_graphics("pd2_GrafTipoVar.png") 
-```
+![ ]("pd2_GrafTipoVar.png") 
 
 # **4.Análisis descriptivo**
 
@@ -85,13 +76,9 @@ por fuera valores perdidos además de realizar otras modificaciones. Para
 realizar alguna investigación se debe usar la base de datos original que
 se encuentra en el siguiente [link](https://peru.oxfam.org/ENADES-2024).
 
-```{r,echo=FALSE, out.width="100%",fig.align="center"}
-knitr::include_graphics("diccionario_enades20241.png") 
-```
+![ ]("diccionario_enades20241.png") 
 
-```{r,echo=FALSE, out.width="100%",fig.align="center"}
-knitr::include_graphics("diccionario_enades20242.png") 
-```
+![ ]("diccionario_enades20242.png") 
 
 ```{r,warning=FALSE}
 library(rio) #Convocamos el paquete   
@@ -124,9 +111,7 @@ número para que el máximo cambie. Es así que si se multiplica por 10, el
 indicador irá de 0 a 10; si se desea que el indicador sea de 0 a 50, se
 debe multiplicar por 50; etc.
 
-```{r,echo=FALSE, out.width="60%",fig.align="center"}
-knitr::include_graphics("pd2_ejemplo.png") 
-```
+![ ]("pd2_ejemplo.png") 
 
 Sin embargo, el paquete scales nos facilita el uso del comando
 **rescale.** Al usarlo solo necesitamos señalar los límites del
@@ -150,9 +135,7 @@ Construiremos un indicador aditivos de percepción de desigualdad en
 calidad de vida en el Perú, que vaya del 0 al 100. Para ello usaremos a
 las variables `d_educ`, `d_salud`, `d_trabajo` y `d_justicia`.
 
-```{r,echo=FALSE, out.width="100%",fig.align="center"}
-knitr::include_graphics("tablitaenades2024.png") 
-```
+![ ]("tablitaenades2024.png") 
 
 El indicador que queremos crear es de percepción de desigualdad, por
 tanto mayor valor debería significar mayor desigualdad. En este caso, un

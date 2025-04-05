@@ -324,11 +324,11 @@ class="section level2">
 </div>
 <div id="qué-es-el-análisis-descriptivo" class="section level1">
 <h1><strong>1.¿Qué es el análisis descriptivo?</strong></h1>
-<p><img src="pd2_AnalisisDesc.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_AnalisisDesc.png%22" /></p>
 </div>
 <div id="nivel-de-medida-de-una-variable" class="section level1">
 <h1><strong>2.Nivel de medida de una variable</strong></h1>
-<p><img src="pd2_medVar.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_medVar.png%22" /></p>
 </div>
 <div id="importancia-de-visualización-de-datos" class="section level1">
 <h1><strong>3.Importancia de visualización de datos</strong></h1>
@@ -339,15 +339,15 @@ desarrollar nuevas técnicas gráficas en distintas plataformas (ejemplos
 a continuación), tanto softwares como librerías de código abierto<a
 href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, tal es el
 caso de ggplot2 en R.</p>
-<p><img src="pd2_herramientas.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_herramientas.png%22" /></p>
 <p>Este interés por desarrollar técnicas de análisis masivo de datos y
 la comunicación de resultados cada vez más amigables y apta para todos
 los públicos dio pie a nuevas especialidades dentro de la ciencia de
 datos, como por ejemplo el data story telling</p>
-<p><img src="pd2_datavis.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_datavis.png%22" /></p>
 <div id="gráficos-por-tipo-de-variables" class="section level3">
 <h3><strong>Gráficos por tipo de variables:</strong></h3>
-<p><img src="pd2_GrafTipoVar.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_GrafTipoVar.png%22" /></p>
 </div>
 </div>
 <div id="análisis-descriptivo" class="section level1">
@@ -377,8 +377,8 @@ dejaron por fuera valores perdidos además de realizar otras
 modificaciones. Para realizar alguna investigación se debe usar la base
 de datos original que se encuentra en el siguiente <a
 href="https://peru.oxfam.org/ENADES-2024">link</a>.</p>
-<p><img src="diccionario_enades20241.png" width="100%" style="display: block; margin: auto;" /></p>
-<p><img src="diccionario_enades20242.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="%22diccionario_enades20241.png%22" /></p>
+<p><img src="%22diccionario_enades20242.png%22" /></p>
 <pre class="r"><code>library(rio) #Convocamos el paquete   
 data=import(&quot;pd2_enades2024.xlsx&quot;)</code></pre>
 <pre class="r"><code>str(data) #revisamos las variables</code></pre>
@@ -426,7 +426,7 @@ variable sea 1 y el mínimo sea 0. A partir de eso se puede multiplicar
 por cualquier número para que el máximo cambie. Es así que si se
 multiplica por 10, el indicador irá de 0 a 10; si se desea que el
 indicador sea de 0 a 50, se debe multiplicar por 50; etc.</p>
-<p><img src="pd2_ejemplo.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="%22pd2_ejemplo.png%22" /></p>
 <p>Sin embargo, el paquete scales nos facilita el uso del comando
 <strong>rescale.</strong> Al usarlo solo necesitamos señalar los límites
 del indicador.</p>
@@ -450,7 +450,7 @@ rango específico.</li>
 calidad de vida en el Perú, que vaya del 0 al 100. Para ello usaremos a
 las variables <code>d_educ</code>, <code>d_salud</code>,
 <code>d_trabajo</code> y <code>d_justicia</code>.</p>
-<p><img src="tablitaenades2024.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="%22tablitaenades2024.png%22" /></p>
 <p>El indicador que queremos crear es de percepción de desigualdad, por
 tanto mayor valor debería significar mayor desigualdad. En este caso, un
 mayor valor quiere decir menos desigualdad. Debemos cambiarlo.</p>
@@ -577,7 +577,7 @@ ggplot(data, aes(x=clase, y=indicador, color=clase)) +
   geom_boxplot() + 
   geom_jitter(shape=16, position=position_jitter(0.2),alpha=0.6) +#para agregar los casos como puntos
   theme_classic()</code></pre>
-<p><img src="semana3_practica_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="semana3_practica_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>➡️ Análisis: En el segundo gráfico la dispersión de los datos es muy
 similar en el grupo de clase social Media baja y Baja. Por otro lado, en
 el grupo de la clase Alta, se aprecia que la dispersión es mucho mayor
@@ -704,7 +704,7 @@ acorde:</p>
 <pre class="r"><code>ggplot(para_grafico, aes(x=P07, y=Porcentaje, fill=P07)) + 
 geom_bar(stat = &quot;identity&quot;) +
   theme_bw()</code></pre>
-<p><img src="semana3_practica_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="semana3_practica_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Este es un gráfico básico, pero podemos personalizarlo<a href="#fn2"
 class="footnote-ref" id="fnref2"><sup>2</sup></a> según nuestros
 gustos.</p>
@@ -717,7 +717,7 @@ gustos.</p>
   geom_text(aes(label=round(Porcentaje,1)), vjust=1.30, color=&quot;black&quot;, size=3)+
   theme(panel.background=element_rect(fill = &quot;white&quot;, colour = &quot;white&quot;)) +
   scale_fill_taylor(palette = &quot;lover&quot;) #fearless, speakNow, Red</code></pre>
-<p><img src="semana3_practica_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="semana3_practica_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>El ejercicio de análisis descriptivo con variables numéricas lo
 realizaremos con un indicador aditivo que crearemos a continuación.</p>
 </div>
