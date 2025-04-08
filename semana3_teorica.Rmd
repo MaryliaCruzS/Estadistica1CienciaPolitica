@@ -427,8 +427,6 @@ Si los datos tienen grupos, quizá los comprenda mejor creando diagramas
 de caja paralelos, lo que le aporta una manera sencilla y potente de
 compararlos.
 
-![](Lecture3_files/comparativoboxplot.png)
-
 ## Cálculo del Diagrama de cajas / Boxplot
 
 1.  Calcular la mediana, el percentil 25 y el percentil 75.
