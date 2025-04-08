@@ -515,7 +515,11 @@ Existen dos tipos de *outliers*:
 
 -   Los errores
 
-## Valores Extremos o Outliers
+-   <div>
+
+    ## 
+
+    </div>
 
 ``` {{r}}
 outliers <- boxplot(data$outliers)$out
