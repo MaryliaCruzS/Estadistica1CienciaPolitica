@@ -18,10 +18,6 @@ editor_options:
     wrap: sentence
 ---
 
-```{r,echo=FALSE, out.width="30%"}
-knitr::include_graphics("logoPUCP.png") 
-```
-
 **FACULTAD DE CIENCIAS SOCIALES - PUCP**<br>
 
 ## Curso: POL 278 - Estadística para el análisis político 1 \| Semestre 2025 - 1 <br>
