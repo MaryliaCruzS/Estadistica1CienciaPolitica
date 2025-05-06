@@ -11,12 +11,12 @@
 
 
 
-<title>Estadística para el Análisis Político 1</title>
+<title>Semana 5 - Sesión Teórica</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -306,6 +306,36 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -318,59 +348,167 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Estadística para el Análisis Político
-1</h1>
+<h1 class="title toc-ignore">Semana 5 - Sesión Teórica</h1>
 
 </div>
 
 
-<p><img src="portada.png" /></p>
-<p>¡Hola a <a href="mailto:tod@s" class="email">tod@s</a>!,</p>
-<p>Antes de empezar, quiero darles la bievenida al curso “Estadística
-para el Análisis Político 1”. Mi objetivo es que vean la estadística
-como una herramienta poderosa para entender la complejidad del mundo,
-analizar datos y tomar mejores decisiones.</p>
-<p>La estadística está en todas partes y, si le dan una oportunidad, les
-puede abrir muchas puertas en su vida académica y profesional.Lo más
-importante es que vengan con curiosidad y mente abierta.</p>
-<div id="sumilla" class="section level1">
-<h1>Sumilla</h1>
-<p>Introducción al análisis cuantitativo en ciencia política. Definición
-de variables, indicadores y escalas de medición. Uso de bases de datos
-para el estudio de casos en ciencia política. Herramientas de
-estadística descriptiva para la exploración de casos: métodos tabulares
-y gráficos; estadísticos descriptivos univariables. De la descripción al
-planteamiento y comprobación de hipótesis. Estrategias para analizar la
-relación entre dos variables: construcción y lecturas de tablas de
-contingencia, y coeficientes de asociación. Pruebas de significancia
-estadística. Análisis de tres variables. Correlación e introducción al
-análisis de regresión.</p>
+<div id="comparación-de-grupos" class="section level1">
+<h1>Comparación de grupos</h1>
 </div>
-<div id="presentación" class="section level1">
-<h1>Presentación</h1>
-<p>La ciencia política tiene como una de sus tareas el análisis de datos
-empíricos con el objetivo de analizar y comprender una realidad. Una
-herramienta científica para lograr este objetivo es la estadística. A
-través de ella se describe, se ponen a prueba hipótesis, y se modela la
-realidad social, económica y política de nuestro entorno. En ese
-sentido, este curso apoya no sólo el perfil académico del estudiante
-sino su perfil profesional, potenciando sus habilidades para el análisis
-político y social, y proporcionándole las bases cuantitativas para el
-desarrollo de su tesis de pregrado. El curso de Estadística para el
-Análisis Político 1 introduce al estudiante en aspectos esenciales del
-análisis cuantitativo en ciencia política. Se prestará atención especial
-en la interpretación y presentación de resultados estadísticos. Si bien
-una parte del curso involucra el manejo de un software estadístico, la
-parte más importante es la lectura de los resultados, sobre la base de
-la teoría y de la realidad.</p>
+<div id="qué-es-un-indicador-aditivo" class="section level1">
+<h1>¿Qué es un indicador aditivo?</h1>
+<p>Un indicador aditivo es un tipo de indicador compuesto que se
+construye sumando los valores de varias variables o ítems que miden
+distintos aspectos de un mismo concepto o dimensión. Se utiliza con
+frecuencia en investigaciones sociales y de opinión pública para resumir
+en un solo valor la información proveniente de múltiples preguntas.</p>
+<p><em>Características principales:</em></p>
+<p>Fácil de calcular: se obtiene sumando los valores de las variables
+seleccionadas. Asume igual peso: cada ítem tiene el mismo valor relativo
+en la construcción del índice (a menos que se indique un peso
+diferente). Utilizado en encuestas: por ejemplo, para medir actitudes
+hacia la democracia, autoritarismo, valores tradicionales, etc.</p>
+<p><em>Ejemplo:</em></p>
+<p>Utilizamos la base de datos de Proetica.</p>
+<pre class="{{r}}"><code>library(rio)
+data2=import(&quot;Base de datos para Proética 2019_4.sav&quot;)</code></pre>
+<pre class="r"><code>library(rio)
+data2=import(&quot;Base de datos para Proética 2019_4.sav&quot;)</code></pre>
+<p>Deseamos crear un indicador con: P30_01 ,P30_02,P30_03, P30_08 ,
+P30_09 y P30_10.</p>
+<pre class="{{r}}"><code>library(dplyr)
+library(dplyr)
+data2=data2%&gt;%
+  dplyr::rename(&quot;congreso&quot;=P30_01)%&gt;%
+  dplyr::mutate(congreso=na_if(congreso,6))%&gt;%
+  dplyr::rename(&quot;contraloria&quot;=P30_02)%&gt;%
+  dplyr::mutate(contraloria=na_if(contraloria, 6))%&gt;%
+  dplyr::rename(&quot;fiscalia&quot;=P30_03)%&gt;%
+  dplyr::mutate(fiscalia=na_if(fiscalia, 6))%&gt;%
+  dplyr::rename(&quot;procur&quot;=P30_08)%&gt;%
+  dplyr::mutate(procur=na_if(procur,6))%&gt;%
+  dplyr::rename(&quot;judicial&quot;=P30_09)%&gt;%
+  dplyr::mutate(judicial=na_if(judicial, 6))%&gt;%
+  dplyr::rename(&quot;policia&quot;=P30_10)%&gt;%
+  dplyr::mutate(policia=na_if(policia, 6))</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(dplyr)
+data2=data2%&gt;%
+  dplyr::rename(&quot;congreso&quot;=P30_01)%&gt;%
+  dplyr::mutate(congreso=na_if(congreso,6))%&gt;%
+  dplyr::rename(&quot;contraloria&quot;=P30_02)%&gt;%
+  dplyr::mutate(contraloria=na_if(contraloria, 6))%&gt;%
+  dplyr::rename(&quot;fiscalia&quot;=P30_03)%&gt;%
+  dplyr::mutate(fiscalia=na_if(fiscalia, 6))%&gt;%
+  dplyr::rename(&quot;procur&quot;=P30_08)%&gt;%
+  dplyr::mutate(procur=na_if(procur,6))%&gt;%
+  dplyr::rename(&quot;judicial&quot;=P30_09)%&gt;%
+  dplyr::mutate(judicial=na_if(judicial, 6))%&gt;%
+  dplyr::rename(&quot;policia&quot;=P30_10)%&gt;%
+  dplyr::mutate(policia=na_if(policia, 6))</code></pre>
+<p>Una vez calculado el índice aditivo, calcule el intervalo de la media
+al 99% de nivel de confianza. Determine si el indicador varía si existe
+una diferencia entre quienes residen en Lima Metropolitana y en el
+interior del país (zonab). Realice el gráfico correspondiente.</p>
+<div id="indicador-aditivo" class="section level2">
+<h2>Indicador aditivo</h2>
+<pre class="{{r}}"><code>data2$suma=
+  data2$congreso+data2$contraloria+data2$fiscalia+data2$procur+data2$judicial+data2$policia
+summary(data2$suma)
+hist(data2$suma)</code></pre>
+<pre class="r"><code>data2$suma=
+  data2$congreso+data2$contraloria+data2$fiscalia+data2$procur+data2$judicial+data2$policia
+summary(data2$suma)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    6.00   12.00   14.00   14.42   18.00   28.00     235</code></pre>
+<pre class="r"><code>hist(data2$suma)</code></pre>
+<p><img src="semana5_teorica_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
-<div id="equipo-de-soporte" class="section level1">
-<h1>Equipo de soporte</h1>
-<ul>
-<li><p>Marylia Cruz (Docente)</p></li>
-<li><p>Manuel Ponte (Jefe de Práctica)</p></li>
-<li><p>Alvaro Carbajal (Jefe de Práctica)</p></li>
-</ul>
+<div id="reescalar-el-indicador-aditivo" class="section level2">
+<h2>Reescalar el indicador aditivo</h2>
+<pre class="{{r}}"><code>library(scales)
+data2$indicador=rescale(data2$suma,to=c(0,100))</code></pre>
+<pre class="r"><code>library(scales)
+data2$indicador=rescale(data2$suma,to=c(0,100))</code></pre>
+</div>
+<div id="intervalo-de-confianza-para-la-media" class="section level2">
+<h2>📈 Intervalo de confianza para la media</h2>
+<pre class="{{r}}"><code>library(lsr)
+ciMean(data2$indicador,na.rm=T,conf =0.99)</code></pre>
+<pre class="r"><code>library(lsr)
+ciMean(data2$indicador,na.rm=T,conf =0.99)</code></pre>
+<pre><code>##          0.5%    99.5%
+## [1,] 37.03404 39.47644</code></pre>
+</div>
+<div id="preparación-de-la-variable-categórica" class="section level2">
+<h2>Preparación de la variable categórica</h2>
+<pre class="{{r}}"><code>table(data2$zonab)</code></pre>
+<pre class="r"><code>table(data2$zonab)</code></pre>
+<pre><code>## 
+##    1    2 
+##  578 1279</code></pre>
+<pre class="{{r}}"><code>str(data2$zonab)</code></pre>
+<pre class="{{r}}"><code>data2$zonab=as.factor(data2$zonab)</code></pre>
+<pre class="r"><code>data2$zonab=as.factor(data2$zonab)</code></pre>
+<pre class="{{r}}"><code>data2$zonab=factor(data2$zonab,levels = levels(data2$zonab),
+                labels = c(&quot;LimaMetropolitana&quot;,&quot;Interior&quot;))</code></pre>
+<pre class="r"><code>data2$zonab=factor(data2$zonab,levels = levels(data2$zonab),
+                labels = c(&quot;LimaMetropolitana&quot;,&quot;Interior&quot;))</code></pre>
+<pre class="{{r}}"><code>table(data2$zonab)</code></pre>
+<pre class="r"><code>table(data2$zonab)</code></pre>
+<pre><code>## 
+## LimaMetropolitana          Interior 
+##               578              1279</code></pre>
+</div>
+<div id="intervalo-de-confianza-para-la-media-en-dos-grupos"
+class="section level2">
+<h2>📈 Intervalo de confianza para la media en dos grupos</h2>
+<pre class="{{r}}"><code>library(dplyr)
+tabla=data2%&gt;%
+  group_by(zonab)%&gt;%
+  summarise(Media=mean(indicador,na.rm = T),
+            LimiteInferior=ciMean(indicador,na.rm = T)[1],
+            LimiteSuperior=ciMean(indicador,na.rm = T)[2])
+tabla</code></pre>
+<pre class="r"><code>library(dplyr)
+tabla=data2%&gt;%
+  group_by(zonab)%&gt;%
+  summarise(Media=mean(indicador,na.rm = T),
+            LimiteInferior=ciMean(indicador,na.rm = T)[1],
+            LimiteSuperior=ciMean(indicador,na.rm = T)[2])
+tabla</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   zonab             Media LimiteInferior LimiteSuperior
+##   &lt;fct&gt;             &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+## 1 LimaMetropolitana  38.3           36.6           40.0
+## 2 Interior           38.2           37.1           39.3</code></pre>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(tabla, aes(x = zonab, y = Media)) +
+  geom_point(size = 5) +  # Punto de la media
+  geom_errorbar(aes(ymin = LimiteInferior, ymax = LimiteSuperior), width = 0.2) +
+  labs(y = &quot;Valor&quot;, x = &quot;&quot;) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())+ ylab(&quot;Promedio &quot;)+
+  ylim(30, 50) </code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(tabla, aes(x = zonab, y = Media)) +
+  geom_point(size = 5) +  # Punto de la media
+  geom_errorbar(aes(ymin = LimiteInferior, ymax = LimiteSuperior), width = 0.2) +
+  labs(y = &quot;Valor&quot;, x = &quot;&quot;) +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())+ ylab(&quot;Promedio &quot;)+
+  ylim(30, 50) </code></pre>
+<p><img src="semana5_teorica_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
 </div>
 
 
