@@ -35,6 +35,20 @@ navbar:
       - text: "Práctica Dirigida"
         href: semana4_practica.html
 
+    - text: "Semana 5"
+      menu:
+      - text: "Sesión Teórica"
+        href: semana5_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana5_practica.html
+
+    - text: "Semana 6"
+      menu:
+      - text: "Sesión Teórica"
+        href: semana6_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana6_practica.html
+
 output:
   html_document:
     theme: cosmo  # Tema visual de la web
