@@ -65,6 +65,7 @@ Para ver nuestro lugar de trabajo actual escribimos el siguiente comando (escrib
 
 ```{r}
 getwd() #para saber en qué carpeta está el archivo
+library(vembedr)
 ```
 
 Si queremos cambiar de directorio de trabajo, nos dirigirnos al menú **"Session" \> "Set Working Directory" \> "Choose Directory"**. Esto abrirá una ventana emergente, donde buscaremos la carpeta en la cual vamos a trabajar, la ubicamos y seleccionamos "Open". Para verificar el cambio volvemos a digitar la función **"getwd()"** en la consola.

@@ -291,6 +291,51 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -687,16 +732,8 @@ ggplot(data, aes(x=Continente,y = Total)) +
 ggplot(data, aes(x=Continente,y = Total)) + 
   geom_boxplot()</code></pre>
 <p><img src="semana3_teorica_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
+<pre class="r"><code>library(dplyr)
+data %&gt;%                      ## Paso 1: DATA 
   group_by(Continente) %&gt;%   
   summarize(Promedio=mean(Total),Mediana=median(Total),Cuartiles=quantile(Total, probs = c(0.25)))</code></pre>
 <pre><code>## # A tibble: 6 × 4
@@ -791,11 +828,6 @@ class="section level2">
        geom_histogram(aes(y = ..density..),
                       color = &quot;gray&quot;, fill = &quot;white&quot;) +
        geom_density(fill = &quot;black&quot;, alpha = 0.2)</code></pre>
-<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(density)` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="semana3_teorica_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>

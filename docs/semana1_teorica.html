@@ -291,6 +291,51 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -369,18 +414,8 @@ conteo_continente &lt;- felicidad %&gt;%
   summarise(Cantidad = n()) %&gt;%
   arrange(desc(Cantidad))</code></pre>
 <pre class="r"><code># Calcular la cantidad de países por continente
-library(tidyverse)</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>conteo_continente &lt;- felicidad %&gt;%
+library(tidyverse)
+conteo_continente &lt;- felicidad %&gt;%
   group_by(Continente) %&gt;%
   summarise(Cantidad = n()) %&gt;%
   arrange(desc(Cantidad))
@@ -444,11 +479,6 @@ ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
   theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;, size=14),
         axis.title = element_text(face=&quot;bold&quot;),
         legend.position = &quot;none&quot;)  # Ocultar leyenda para estética</code></pre>
-<pre><code>## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(count)` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
 <p><img src="semana1_teorica_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
 <div id="reto---nivel-2" class="section level1">

@@ -293,6 +293,51 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -429,14 +474,6 @@ style="color:green"><strong>dplyr</strong></span></li>
 <pre class="{{r}}"><code>install.packages(&quot;dplyr&quot;)
 library(dplyr)</code></pre>
 <pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <ul>
 <li>Usamos el pipe <strong>%&gt;%</strong> para ordenar los
 comandos.</li>
@@ -616,11 +653,6 @@ una tabla.</p></li>
   kable() %&gt;%  # Paso 3: Convierte la tabla en código HTML
   kable_styling()# Paso 4: Se visualiza mejor la tabla.Esto te servirá cuando utilices Rmd dado que este crear un archivo HTML.</code></pre>
 <pre class="r"><code>library(kableExtra)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;kableExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     group_rows</code></pre>
 <pre class="r"><code>data %&gt;%                      ## Paso 1: DATA 
   summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T)) %&gt;%   ## Paso 2: Resumir 
   kable() %&gt;%  # Paso 3: Convierte la tabla en código HTML
@@ -692,8 +724,7 @@ histograma.</li>
 <pre class="{{r}}"><code>ggplot(data, aes(x=manifestaciones_ley)) + geom_histogram()</code></pre>
 <pre class="r"><code>ggplot(data, aes(x=manifestaciones_ley)) + geom_histogram()</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range
-## (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range (`stat_bin()`).</code></pre>
 <p><img src="semana2_teorica_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
 <div id="gráfico-histograma-por-grupos" class="section level2">
@@ -713,8 +744,7 @@ histograma. Se emplea fill para colocar la variable factor.</li>
   labs(title = &quot;Histograma por Grupo&quot;, x = &quot;Valor&quot;, y = &quot;Frecuencia&quot;) +
   theme_minimal() +
   scale_fill_manual(values = c(&quot;blue&quot;, &quot;red&quot;))</code></pre>
-<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range
-## (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing non-finite outside the scale range (`stat_bin()`).</code></pre>
 <p><img src="semana2_teorica_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="gráfico-gráfico-de-barras" class="section level2">

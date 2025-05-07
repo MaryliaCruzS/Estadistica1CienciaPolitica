@@ -392,16 +392,8 @@ data2=data2%&gt;%
   dplyr::mutate(judicial=na_if(judicial, 6))%&gt;%
   dplyr::rename(&quot;policia&quot;=P30_10)%&gt;%
   dplyr::mutate(policia=na_if(policia, 6))</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>library(dplyr)
+library(dplyr)
 data2=data2%&gt;%
   dplyr::rename(&quot;congreso&quot;=P30_01)%&gt;%
   dplyr::mutate(congreso=na_if(congreso,6))%&gt;%

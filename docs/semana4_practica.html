@@ -306,6 +306,36 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -362,16 +392,8 @@ intergubernamentales, incluida la Asamblea General de las Naciones
 Unidas, el Consejo Económico y Social y el Foro Político de Alto
 Nivel.</p>
 <p>Carguemos la data <em>EGOV_DATA_2024.csv</em></p>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(rio)    
+<pre class="r"><code>library(dplyr)
+library(rio)    
 data=import(&quot;EGOV_DATA_2024.csv&quot;) </code></pre>
 <table>
 <colgroup>
@@ -530,13 +552,12 @@ dividen esa variable, el gráfico más recomendado es el
 de la caja)</strong>.</p>
 <pre class="r"><code>data %&gt;% 
   summarise(CuartilesE_Index = quantile(E_Index))</code></pre>
-<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
-## dplyr 1.1.0.
+<pre><code>## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr
+## 1.1.0.
 ## ℹ Please use `reframe()` instead.
-## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
-##   always returns an ungrouped data frame and adjust accordingly.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()` always
+##   returns an ungrouped data frame and adjust accordingly.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>##   CuartilesE_Index
 ## 1          0.09470
 ## 2          0.47569

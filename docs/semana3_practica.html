@@ -13,7 +13,7 @@
 
 <title>Semana 3 - Práctica Dirigida</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -291,6 +291,51 @@ $(document).ready(function () {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana5_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -426,7 +471,7 @@ variable sea 1 y el mínimo sea 0. A partir de eso se puede multiplicar
 por cualquier número para que el máximo cambie. Es así que si se
 multiplica por 10, el indicador irá de 0 a 10; si se desea que el
 indicador sea de 0 a 50, se debe multiplicar por 50; etc.</p>
-<p><img src="pd2_ejemplo.png" /></p>
+<p><img src="pd2_ejemplo.PNG" /></p>
 <p>Sin embargo, el paquete scales nos facilita el uso del comando
 <strong>rescale.</strong> Al usarlo solo necesitamos señalar los límites
 del indicador.</p>
@@ -450,7 +495,7 @@ rango específico.</li>
 calidad de vida en el Perú, que vaya del 0 al 100. Para ello usaremos a
 las variables <code>d_educ</code>, <code>d_salud</code>,
 <code>d_trabajo</code> y <code>d_justicia</code>.</p>
-<p><img src="tablitaenades2024.png" /></p>
+<p><img src="tablitaenades2024.PNG" /></p>
 <p>El indicador que queremos crear es de percepción de desigualdad, por
 tanto mayor valor debería significar mayor desigualdad. En este caso, un
 mayor valor quiere decir menos desigualdad. Debemos cambiarlo.</p>
@@ -708,9 +753,9 @@ geom_bar(stat = &quot;identity&quot;) +
 <p>Este es un gráfico básico, pero podemos personalizarlo<a href="#fn2"
 class="footnote-ref" id="fnref2"><sup>2</sup></a> según nuestros
 gustos.</p>
-<pre class="r"><code>library(tayloRswift) #opcional (una ventaja de que R sea software libre)</code></pre>
-<pre><code>## Warning: package &#39;tayloRswift&#39; was built under R version 4.4.3</code></pre>
-<pre class="r"><code>ggplot(para_grafico, aes(x=P07, y=Porcentaje, fill=P07)) + 
+<pre class="r"><code>library(tayloRswift) #opcional (una ventaja de que R sea software libre)
+
+ggplot(para_grafico, aes(x=P07, y=Porcentaje, fill=P07)) + 
   geom_bar(stat = &quot;identity&quot;)  +
   ggtitle(&quot;Percepción de desigualdad económica&quot;) +
   xlab(&quot;¿Qué tan desigual cree que es el Perú económicamente&quot;) + ylab(&quot;Porcentaje&quot;)+

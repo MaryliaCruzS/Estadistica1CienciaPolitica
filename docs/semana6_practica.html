@@ -11,9 +11,9 @@
 
 
 
-<title>Práctica dirigida 5</title>
+<title>Semana 6 - Práctica Dirigida</title>
 
-<script src="site_libs/header-attrs-2.28/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -29,11 +29,8 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">
@@ -223,69 +220,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -293,16 +227,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -424,18 +348,23 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Práctica dirigida 5</h1>
+<h1 class="title toc-ignore">Semana 6 - Práctica Dirigida</h1>
 
 </div>
 
 
+<div id="práctica-dirigida-5" class="section level1">
+<h1>Práctica Dirigida 5</h1>
+<center>
+<img src=" " width="200"/>
+</center>
 <p><strong>FACULTAD DE CIENCIAS SOCIALES - PUCP</strong><br></p>
 <div
 id="curso-pol-278---estadística-para-el-análisis-político-1-semestre-2025---1"
 class="section level2">
-<h2>Curso: POL 278 - Estadística para el análisis político 1 | Semestre
-2025 - 1 <br></h2>
-<hr />
+<h2>## Curso: POL 278 - Estadística para el análisis político 1 |
+Semestre 2025 - 1 <br></h2>
+</div>
 </div>
 <div id="tablas-de-contingencia" class="section level1">
 <h1><strong>Tablas de contingencia</strong></h1>
@@ -630,11 +559,10 @@ muestra?</b>
 <pre class="r"><code>toPlot1 = as.data.frame(tablapor1) 
 names(toPlot1) = c(&quot;Categoria&quot;, &quot;Sexo&quot;, &quot;Porcentaje&quot;)</code></pre>
 <p>Generamos el gráfico y lo solicitamos:</p>
-<pre class="r"><code>library(ggplot2)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.3.3</code></pre>
-<pre class="r"><code>library(ggsci) #para usar la paleta de colores de startrek</code></pre>
-<pre><code>## Warning: package &#39;ggsci&#39; was built under R version 4.3.3</code></pre>
-<pre class="r"><code>  ggplot(toPlot1, aes(x=Sexo, y=Porcentaje*100, fill=Categoria)) +
+<pre class="r"><code>library(ggplot2)
+library(ggsci) #para usar la paleta de colores de startrek
+
+  ggplot(toPlot1, aes(x=Sexo, y=Porcentaje*100, fill=Categoria)) +
   geom_bar(position=&quot;stack&quot;, stat=&quot;identity&quot;)+ #Stack indica que son barras apiladas
   geom_text(aes(label=paste0(Porcentaje*100,&quot;%&quot;)), 
             position = position_stack(vjust = 0.5), 
@@ -742,9 +670,8 @@ todas las celdas tienen un número igual o mayor a 5.</p>
 <pre class="r"><code>toPlot2 = as.data.frame(tablapor2) 
 names(toPlot2) = c(&quot;Categoria&quot;, &quot;Estrato&quot;, &quot;Porcentaje&quot;)</code></pre>
 <p>Generamos el gráfico y lo solicitamos:</p>
-<pre class="r"><code>library(tayloRswift)</code></pre>
-<pre><code>## Warning: package &#39;tayloRswift&#39; was built under R version 4.3.3</code></pre>
-<pre class="r"><code>  ggplot(toPlot2, aes(x=Estrato, y=Porcentaje*100, fill=Categoria)) +
+<pre class="r"><code>library(tayloRswift)
+  ggplot(toPlot2, aes(x=Estrato, y=Porcentaje*100, fill=Categoria)) +
   geom_bar(position=&quot;stack&quot;, stat=&quot;identity&quot;)+
   geom_text(aes(label=paste(Porcentaje*100,&quot;%&quot;)), 
             position = position_stack(vjust=0.5), 
@@ -828,8 +755,6 @@ href="#fnref1" class="footnote-back">↩︎</a></p></li>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -862,35 +787,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
