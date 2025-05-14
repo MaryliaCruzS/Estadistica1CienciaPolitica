@@ -39,8 +39,6 @@ navbar:
       menu:
       - text: "Sesión Teórica"
         href: semana5_teorica.html
-      - text: "Práctica Dirigida"
-        href: semana5_practica.html
 
     - text: "Semana 6"
       menu:
@@ -48,6 +46,20 @@ navbar:
         href: semana6_teorica.html
       - text: "Práctica Dirigida"
         href: semana6_practica.html
+
+    - text: "Semana 7"
+      menu:
+      - text: "Sesión Teórica"
+        href: semana7_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana7_practica.html
+
+    - text: "Semana 8"
+      menu:
+      - text: "Sesión Teórica"
+        href: semana8_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana8_practica.html
 
 output:
   html_document:

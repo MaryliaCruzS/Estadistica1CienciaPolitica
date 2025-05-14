@@ -1,10 +1,10 @@
 ---
-title: "Semana 6 - Sesión Teórica"
+title: "Semana 7 - Sesión Teórica"
 output: html_document
 editor_options: 
   markdown: 
     wrap: 72
 ---
 
-# Prueba T
+# Chi-cuadrado
 
