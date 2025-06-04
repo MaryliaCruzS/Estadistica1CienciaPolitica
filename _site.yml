@@ -56,8 +56,12 @@ navbar:
 
     - text: "Semana 8"
       menu:
-      - text: "Sesión Teórica"
-        href: semana8_teorica.html
+      - text: "Práctica Dirigida"
+        href: semana8_practica.html
+        
+        
+    - text: "Semana 8"
+      menu:
       - text: "Práctica Dirigida"
         href: semana8_practica.html
 
