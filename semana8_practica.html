@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Práctica dirigida 6</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística para el Análisis Político 1</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Inicio</a>
+</li>
+<li>
+  <a href="pasosbasicos.html">Pasos básicos</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana1_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana2_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana2_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana3_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana3_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 7
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana7_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana7_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 8
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana8_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 10
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana9_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Práctica dirigida 6</h1>
+
+</div>
+
+
+<p><strong>FACULTAD DE CIENCIAS SOCIALES - PUCP</strong><br></p>
+<div
+id="curso-pol-278---estadística-para-el-análisis-político-1-semestre-2025---1"
+class="section level2">
+<h2>Curso: POL 278 - Estadística para el análisis político 1 | Semestre
+2025 - 1 <br></h2>
+<hr />
+</div>
+<div id="perfil-de-las-candidaruras-congresales-eg-2021"
+class="section level1">
+<h1><strong>Perfil de las candidaruras congresales EG 2021</strong></h1>
+<p>En el 2021, el Jurado Nacional de Elecciones aplicó la Encuesta
+Nacional a Candidaturas Congresales 2021, con el objetivo de elaborar un
+perfil de las candidaturas que postularon al Congreso de la República en
+el marco de las Elecciones Generales 2021. Las temáticas que abordaron
+fueron las características sociodemográficas, trayectoria política,
+actitudes democráticas, motivaciones de las candidaturas, campaña
+electoral, discriminación y acoso político. Puede acceder a la
+información mediante el libro <a
+href="https://dnef.jne.gob.pe/publicaciones.html">Radiografía de las
+candidaturas congresales</a>. Además, la información se encuentra
+disponible en: <a href="https://dnef.jne.gob.pe/">base de datos</a></p>
+<p>Para esta sesión se usará una versión que contiene las siguientes
+variables:</p>
+<p><img src="pd6_diccionario.jpeg" /></p>
+<p>En ese sentido en esta sesión responderemos a la siguiente
+pregunta:</p>
+</div>
+<div
+id="cuál-es-el-perfil-en-términos-de-la-experiencia-política-y-dificultades-de-las-candidaturas-en-la-campaña-electoral-del-2021"
+class="section level1">
+<h1><strong>¿Cuál es el perfil en términos de la experiencia política y
+dificultades de las candidaturas en la campaña electoral del
+2021?</strong></h1>
+<pre class="r"><code>library(rio)
+library(dplyr)
+library(lsr)
+library(ggplot2)</code></pre>
+<pre class="r"><code>data = import(&quot;ENCC2021.xlsx&quot;)
+names(data)</code></pre>
+<pre><code>## [1] &quot;ID&quot;                       &quot;SEXO&quot;                    
+## [3] &quot;P1.1&quot;                     &quot;EXP_OS&quot;                  
+## [5] &quot;P23.1&quot;                    &quot;P23.2&quot;                   
+## [7] &quot;P23.3&quot;                    &quot;Discriminacion_Violencia&quot;
+## [9] &quot;INDIGENA&quot;</code></pre>
+<div id="análisis-descriptivo" class="section level2">
+<h2><strong>1. Análisis descriptivo</strong></h2>
+<div
+id="cuál-es-la-proporción-de-candidaturas-con-experiencia-de-participación-en-organizaciones-sociales"
+class="section level3">
+<h3>¿Cuál es la proporción de candidaturas con experiencia de
+participación en organizaciones sociales?</h3>
+<pre class="r"><code>data = data %&gt;% 
+  mutate(Participacion_OS =factor(EXP_OS,labels=c(&quot;No&quot;,&quot;Si&quot;)))</code></pre>
+<pre class="r"><code>tabla1 = data %&gt;% 
+  group_by(Participacion_OS) %&gt;% 
+  summarise(Freq=n()) %&gt;% 
+  mutate(Porcentaje = (Freq/sum(Freq))*100)
+tabla1</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   Participacion_OS  Freq Porcentaje
+##   &lt;fct&gt;            &lt;int&gt;      &lt;dbl&gt;
+## 1 No                  96       19.6
+## 2 Si                 394       80.4</code></pre>
+<p>En la muestra, un 80.4% de candidaturas congresales que postuló en
+las EG 2021, contaba con experiencia en organizaciones sociales.</p>
+<pre class="r"><code>ggplot(tabla1, aes(x=Participacion_OS,y=Porcentaje,fill=Participacion_OS))+
+  geom_bar(stat=&quot;identity&quot;)+
+  geom_text(aes(label=paste(round(Porcentaje,1),&quot;%&quot;)),vjust=1.30, color=&quot;black&quot;, size=3)+
+  ggtitle(&quot;Candidaturas con experiencia en organizaciones sociales (%)&quot;)+xlab(&quot;Ha participado en alguna organización social&quot;)+theme_classic()</code></pre>
+<p><img src="semana8_practica_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div
+id="cuántos-años-llevan-participando-en-política-las-candidaturas-congresales-de-las-eg-2021"
+class="section level3">
+<h3>¿Cuántos años llevan participando en política las candidaturas
+congresales de las EG 2021?</h3>
+<pre class="r"><code>data %&gt;% 
+  summarise(minimo=min(P1.1,na.rm = T),
+            maximo=max(P1.1,na.rm = T),
+            media=mean(P1.1,na.rm = T),
+            mediana=median(P1.1,na.rm = T),
+            sd=sd(P1.1,na.rm = T),
+            Q1=quantile(P1.1,na.rm = T,0.25),
+            Q3=quantile(P1.1,na.rm = T,0.75))</code></pre>
+<pre><code>##   minimo maximo    media mediana       sd Q1 Q3
+## 1      0     70 12.23878     9.5 12.34334  3 18</code></pre>
+<pre class="r"><code>data %&gt;%
+  ggplot(aes(x = P1.1)) + 
+  geom_histogram(color = &quot;black&quot;, fill = &quot;hotpink1&quot;, bins = 40) +
+  ggtitle(&quot;Años participando en política de las candidaturas congresales - EG 2021 &quot;) +
+  ylab(&quot;Frecuencia&quot;)+xlab(&quot;Años participando en política&quot;)+
+  geom_vline(xintercept =  mean(data$P1.1, na.rm = TRUE), color = &quot;red&quot;, linetype = &quot;dashed&quot;, size = 1) + # Línea de la media
+  geom_vline(xintercept = median(data$P1.1, na.rm = TRUE), color = &quot;grey&quot;, linetype = &quot;dashed&quot;, size = 1) + # Línea de la mediana
+  theme_minimal()</code></pre>
+<p><img src="semana8_practica_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="intervalo-de-confianza-para-proporción" class="section level2">
+<h2><strong>2. Intervalo de confianza para proporción</strong></h2>
+<p>Encontramos que la proporción de candidaturas con experiencia en
+organizaciones sociales es de 80.4%, calculemos cuanto será este valor
+en la población.</p>
+<p>Previamente ya habíamos calculado la frecuencia de los que contaban
+con experiencia en organizaciones sociales y los que no, ingresemos esos
+datos en el prop.test</p>
+<pre class="r"><code>tabla1</code></pre>
+<pre><code>## # A tibble: 2 × 3
+##   Participacion_OS  Freq Porcentaje
+##   &lt;fct&gt;            &lt;int&gt;      &lt;dbl&gt;
+## 1 No                  96       19.6
+## 2 Si                 394       80.4</code></pre>
+<pre class="r"><code>prop.test(394,394+96,conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  394 out of 394 + 96, null probability 0.5
+## X-squared = 180.02, df = 1, p-value &lt; 2.2e-16
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.7655499 0.8377461
+## sample estimates:
+##         p 
+## 0.8040816</code></pre>
+<p>La proporción de candidaturas con experiencia en organizaciones
+sociales se encuentra entre 76.55% y 83.77%, a un 95% de confianza.</p>
+</div>
+<div id="intervalo-de-confianza-para-media" class="section level2">
+<h2><strong>3. Intervalo de confianza para media</strong></h2>
+<p>Anteriormente, encontramos que las candidaturas congresales tienen,
+en promedio, 12 años participando en política. Calculemos cuanto es este
+valor en la población.</p>
+<pre class="r"><code>ic_media = data %&gt;%
+  summarise(Media = mean(P1.1, na.rm=T),
+            LimiteInferior = ciMean(P1.1, na.rm=T)[1],
+            LimiteSuperior = ciMean(P1.1, na.rm=T)[2])
+ic_media</code></pre>
+<pre><code>##      Media LimiteInferior LimiteSuperior
+## 1 12.23878       11.14316       13.33439</code></pre>
+<p>A un 95% de confianza podemos concluir que, en promedio, una
+candidatura congresal de las EG 2021 tiene aproximadamente entre 11 y 13
+años de experiencia participando en política.</p>
+</div>
+<div id="prueba-t" class="section level2">
+<h2><strong>4. Prueba T</strong></h2>
+<div
+id="existe-diferencia-entre-la-experiencia-política-p1.1-de-las-mujeres-y-hombres-que-postularon-en-las-eg-2021"
+class="section level3">
+<h3>¿Existe diferencia entre la experiencia política (P1.1) de las
+mujeres y hombres que postularon en las EG 2021?</h3>
+<pre class="r"><code>data = data %&gt;% mutate(SEXO = factor(SEXO, labels = c(&quot;Mujer&quot;,&quot;Hombre&quot;)))</code></pre>
+<pre class="r"><code>grafico = data %&gt;% 
+  group_by(SEXO) %&gt;% 
+  summarise(media = mean(P1.1,na.rm=T),
+            Superior = ciMean(P1.1,na.rm=T)[1],
+            Inferior = ciMean(P1.1,na.rm=T)[2])
+grafico</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   SEXO   media Superior Inferior
+##   &lt;fct&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Mujer   9.61     8.28     10.9
+## 2 Hombre 14.9     13.2      16.6</code></pre>
+<p>En la muestra si existe una diferencia entre los años de experiencia
+en política de las candidaturas hombres y mujeres. De esa manera, los
+hombres tienen más años (en promedio) participando en política que las
+mujeres. Analicemos si esto se cumple en la población de candidaturas
+congresales de las EG 2021.</p>
+<pre class="r"><code>t.test(P1.1~SEXO,data)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  P1.1 by SEXO
+## t = -4.8576, df = 458.95, p-value = 1.633e-06
+## alternative hypothesis: true difference in means between group Mujer and group Hombre is not equal to 0
+## 95 percent confidence interval:
+##  -7.452953 -3.159633
+## sample estimates:
+##  mean in group Mujer mean in group Hombre 
+##             9.607287            14.913580</code></pre>
+<p>H0: No existe diferencia entre los promedios de los años de
+experiencia política entre hombres y mujeres. /H1: Existe diferencia
+entre los promedios de los años de experiencia política entre hombres y
+mujeres.</p>
+<p>Analizando el pvalor, podemos rechazar la hipótesis nula y así
+afirmar que las medias de los años de experiencia política entre hombres
+y mujeres, no son iguales.</p>
+<p>Constatemos cual es la media más alta con un gráfico:</p>
+<pre class="r"><code>ggplot(grafico,aes(x=SEXO,y=media))+
+  geom_errorbar(aes(ymin=Inferior,ymax=Superior),width=0.4)+
+  xlab(&quot;Sexo&quot;)+
+  ylab(&quot;Años de experiencia en política&quot;)+theme_classic()</code></pre>
+<p><img src="semana8_practica_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+</div>
+<div id="prueba-chi-cuadrado" class="section level2">
+<h2><strong>5. Prueba Chi Cuadrado</strong></h2>
+<p>¿De qué manera se relacionan las situaciones de discriminación en
+campaña y la autoidentificación étnica de las candidaturas?</p>
+<pre class="r"><code>data = data %&gt;% 
+  mutate(Discriminacion_Violencia = factor(Discriminacion_Violencia,labels=c(&quot;No&quot;,&quot;Si&quot;)))</code></pre>
+<pre class="r"><code>data = data %&gt;% 
+  mutate(INDIGENA = factor(INDIGENA,labels=c(&quot;No indigena&quot;,&quot;Indigena&quot;)))</code></pre>
+<pre class="r"><code>table(data$Discriminacion_Violencia)</code></pre>
+<pre><code>## 
+##  No  Si 
+## 211 279</code></pre>
+<pre class="r"><code>tabla1=table(data$Discriminacion_Violencia,data$INDIGENA)
+tabla1</code></pre>
+<pre><code>##     
+##      No indigena Indigena
+##   No         157       54
+##   Si         202       77</code></pre>
+<p>Revisemos el supuesto</p>
+<pre class="r"><code>chisq.test(tabla1)$expected</code></pre>
+<pre><code>##     
+##      No indigena Indigena
+##   No    154.5898  56.4102
+##   Si    204.4102  74.5898</code></pre>
+<p>Si cumple con el mínimo por celda.</p>
+<pre class="r"><code>tablapor1 = tabla1 %&gt;%
+           prop.table(1) %&gt;%  
+           round(2) #redondear el resultado a 2 decimales
+tablapor1</code></pre>
+<pre><code>##     
+##      No indigena Indigena
+##   No        0.74     0.26
+##   Si        0.72     0.28</code></pre>
+<pre class="r"><code>toPlot1 = as.data.frame(tablapor1) 
+names(toPlot1) = c(&quot;Discriminacion_Violencia&quot;, &quot;Indigena&quot;, &quot;Porcentaje&quot;)</code></pre>
+<pre class="r"><code>  ggplot(toPlot1, aes(x=Discriminacion_Violencia, y=Porcentaje*100, fill=Indigena)) +
+  geom_bar(position=&quot;stack&quot;, stat=&quot;identity&quot;)+ #Stack indica que son barras apiladas
+  geom_text(aes(label=paste0(Porcentaje*100,&quot;%&quot;)), 
+            position = position_stack(vjust = 0.5), 
+             size = 4,
+             fontface=&quot;bold&quot;)+
+  labs(x=&quot;Situaciones de violencia y discriminación en campaña&quot;, y=&quot;Porcentaje&quot;, fill=&quot;Autoidentificación étnica&quot;)+
+  theme_minimal()</code></pre>
+<p><img src="semana8_practica_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>chisq.test(tabla1)</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  tabla1
+## X-squared = 0.15506, df = 1, p-value = 0.6937</code></pre>
+<p>H0: La autoidentificación étnica de las candidaturas es
+estadísticamente independiente de las situaciones de violencia o
+discriminación en campaña electoral</p>
+<p>HA: La autoidentificación étnica de las candidaturas es
+estadísticamente dependiente de las situaciones de violencia o
+discriminación en campaña electoral</p>
+</div>
+<div id="indicador-aditivo" class="section level2">
+<h2><strong>6. Indicador aditivo</strong></h2>
+<p>¿Cuál es la confianza de las candidaturas congresales en los
+organismos electorales durante las EG 2021?</p>
+<pre class="r"><code>data=data %&gt;%
+  mutate(suma = P23.1 + P23.2 + P23.3)</code></pre>
+<pre class="r"><code>library(scales)
+data = data %&gt;%
+  mutate(indicador = rescale(suma, to = c(0, 100)))</code></pre>
+<pre class="r"><code>data %&gt;% 
+  group_by(SEXO) %&gt;% 
+  summarise(
+    Media = mean(indicador), 
+    Mediana = median(indicador), 
+    Desviacion = sd(indicador), 
+    Minimo = min(indicador), 
+    Maximo = max(indicador),
+    Q1 = quantile(indicador, 0.25), #Primer cuartil
+    Q3 = quantile(indicador, 0.75) #Tercer cuartil
+  )</code></pre>
+<pre><code>## # A tibble: 2 × 8
+##   SEXO   Media Mediana Desviacion Minimo Maximo    Q1    Q3
+##   &lt;fct&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Mujer   71.1    77.8       22.0      0    100  55.6  88.9
+## 2 Hombre  68.6    66.7       22.3      0    100  55.6  88.9</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

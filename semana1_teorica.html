@@ -11,12 +11,12 @@
 
 
 
-<title>Estadística para el Análisis Político 1</title>
+<title>Semana 1 - Sesión Teórica</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -384,59 +384,200 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Estadística para el Análisis Político
-1</h1>
+<h1 class="title toc-ignore">Semana 1 - Sesión Teórica</h1>
 
 </div>
 
 
-<p><img src="portada.png" /></p>
-<p>¡Hola a <a href="mailto:tod@s" class="email">tod@s</a>!,</p>
-<p>Antes de empezar, quiero darles la bievenida al curso “Estadística
-para el Análisis Político 1”. Mi objetivo es que vean la estadística
-como una herramienta poderosa para entender la complejidad del mundo,
-analizar datos y tomar mejores decisiones.</p>
-<p>La estadística está en todas partes y, si le dan una oportunidad, les
-puede abrir muchas puertas en su vida académica y profesional.Lo más
-importante es que vengan con curiosidad y mente abierta.</p>
-<div id="sumilla" class="section level1">
-<h1>Sumilla</h1>
-<p>Introducción al análisis cuantitativo en ciencia política. Definición
-de variables, indicadores y escalas de medición. Uso de bases de datos
-para el estudio de casos en ciencia política. Herramientas de
-estadística descriptiva para la exploración de casos: métodos tabulares
-y gráficos; estadísticos descriptivos univariables. De la descripción al
-planteamiento y comprobación de hipótesis. Estrategias para analizar la
-relación entre dos variables: construcción y lecturas de tablas de
-contingencia, y coeficientes de asociación. Pruebas de significancia
-estadística. Análisis de tres variables. Correlación e introducción al
-análisis de regresión.</p>
+<div id="variable" class="section level1">
+<h1>Variable</h1>
+<p>En estadística, una variable es cualquier característica, propiedad o
+atributo que puede tomar diferentes valores. Estos valores pueden ser
+numéricos o categóricos dependiendo del tipo de variable.</p>
 </div>
-<div id="presentación" class="section level1">
-<h1>Presentación</h1>
-<p>La ciencia política tiene como una de sus tareas el análisis de datos
-empíricos con el objetivo de analizar y comprender una realidad. Una
-herramienta científica para lograr este objetivo es la estadística. A
-través de ella se describe, se ponen a prueba hipótesis, y se modela la
-realidad social, económica y política de nuestro entorno. En ese
-sentido, este curso apoya no sólo el perfil académico del estudiante
-sino su perfil profesional, potenciando sus habilidades para el análisis
-político y social, y proporcionándole las bases cuantitativas para el
-desarrollo de su tesis de pregrado. El curso de Estadística para el
-Análisis Político 1 introduce al estudiante en aspectos esenciales del
-análisis cuantitativo en ciencia política. Se prestará atención especial
-en la interpretación y presentación de resultados estadísticos. Si bien
-una parte del curso involucra el manejo de un software estadístico, la
-parte más importante es la lectura de los resultados, sobre la base de
-la teoría y de la realidad.</p>
+<div id="tipos-de-variables" class="section level1">
+<h1>Tipos de variables</h1>
 </div>
-<div id="equipo-de-soporte" class="section level1">
-<h1>Equipo de soporte</h1>
+<div id="varibles-categóricas-o-cualitativas" class="section level1">
+<h1>Varibles categóricas o cualitativas:</h1>
+<p>Son aquellas que expresan cualidades, atributos o categorías sin un
+valor numérico asociado.</p>
+<p>Tipos de variables categóricas o cualitativas:</p>
+<p>✅ Nominales: No tienen un orden específico.</p>
+<p>Ejemplo: Color de ojos (azul, verde, marrón), estado civil (soltero,
+casado, divorciado).</p>
+<p>✅ Ordinales: Poseen un orden lógico, pero la diferencia entre
+categorías no es cuantificable.</p>
+<p>Ejemplo: Nivel de educación (básico, medio, superior), nivel de
+satisfacción (bajo, medio, alto).</p>
+</div>
+<div id="varibles-numéricas-o-cuantitativas" class="section level1">
+<h1>Varibles numéricas o cuantitativas</h1>
+<p>Son aquellas que representan cantidades y pueden medirse
+numéricamente.</p>
+<p>Tipos de variables numéricas o cuantitativas:</p>
+<p>✅ Discretas: Toman valores enteros y no admiten valores
+intermedios.</p>
+<p>Ejemplo: Número de hijos en una familia (0, 1, 2, 3, …), cantidad de
+autos en un estacionamiento. ✅ Continuas: Pueden tomar valores dentro
+de un rango infinito, incluyendo decimales.</p>
+<p>Ejemplo: Peso de una persona (65.7 kg, 70.2 kg, etc.), temperatura de
+una ciudad (20.5°C, 23.1°C).</p>
+</div>
+<div id="ejercicio-1" class="section level1">
+<h1>Ejercicio 1</h1>
+<p>La base de datos “Felicidad” (World Happiness Report) contiene
+información sobre los niveles de felicidad en diferentes países, basada
+en diversas variables.</p>
+<p>Analiza los tipos de variables que se encuentran en la base de datos
+“Felicidad”. Clasifícalas en cualitativas o cuantitativas y justifica tu
+respuesta.</p>
+<p>Explora las variables</p>
+<pre class="{{r}}"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+<pre class="r"><code>library(rio)
+felicidad=import(&quot;felicidad.xlsx&quot;)</code></pre>
+</div>
+<div id="reto---nivel-1" class="section level1">
+<h1>Reto - Nivel 1</h1>
 <ul>
-<li><p>Marylia Cruz (Docente)</p></li>
-<li><p>Manuel Ponte (Jefe de Práctica)</p></li>
-<li><p>Alvaro Carbajal (Jefe de Práctica)</p></li>
+<li>Resume la cantidad de países por continente</li>
 </ul>
+<pre class="{{r}}"><code># Calcular la cantidad de países por continente
+library(tidyverse)
+conteo_continente &lt;- felicidad %&gt;%
+  group_by(Continente) %&gt;%
+  summarise(Cantidad = n()) %&gt;%
+  arrange(desc(Cantidad))</code></pre>
+<pre class="r"><code># Calcular la cantidad de países por continente
+library(tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ────────────── tidyverse 2.0.0 ──
+## ✔ forcats   1.0.0     ✔ readr     2.1.5
+## ✔ lubridate 1.9.3     ✔ stringr   1.5.1
+## ✔ purrr     1.0.2     ✔ tibble    3.2.1
+## ── Conflicts ──────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>conteo_continente &lt;- felicidad %&gt;%
+  group_by(Continente) %&gt;%
+  summarise(Cantidad = n()) %&gt;%
+  arrange(desc(Cantidad))
+conteo_continente</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   Continente    Cantidad
+##   &lt;chr&gt;            &lt;int&gt;
+## 1 Africa              41
+## 2 Asia                41
+## 3 Europe              40
+## 4 South America       12
+## 5 North America       11
+## 6 Oceania              2</code></pre>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +  # Colores atractivos
+  labs(title = &quot;Cantidad de Países por Continente&quot;, x = &quot;Continente&quot;, y = &quot;Número de Países&quot;) +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face=&quot;bold&quot;, size=14))</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(conteo_continente, aes(x = Continente, y = Cantidad, fill = Continente)) +
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) +
+  scale_fill_brewer(palette = &quot;Set2&quot;) +  # Colores atractivos
+  labs(title = &quot;Cantidad de Países por Continente&quot;, x = &quot;Continente&quot;, y = &quot;Número de Países&quot;) +
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust=0.5, face=&quot;bold&quot;, size=14))</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>Resume el índice de felicidad.</li>
+</ul>
+<pre class="{{r}}"><code>summary(felicidad$Indice_de_felicidad)</code></pre>
+<pre class="r"><code>summary(felicidad$Indice_de_felicidad)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.364   4.702   5.868   5.578   6.479   7.736</code></pre>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill=&quot;skyblue&quot;, color=&quot;black&quot;) +
+  labs(title=&quot;Histograma de Felicidad&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_minimal()</code></pre>
+<pre class="r"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad)) +
+  geom_histogram(binwidth=0.5, fill=&quot;skyblue&quot;, color=&quot;black&quot;) +
+  labs(title=&quot;Histograma de Felicidad&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_minimal()</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="{{r}}"><code>library(ggplot2)
+ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color=&quot;black&quot;) +
+  scale_fill_gradient(low=&quot;blue&quot;, high=&quot;red&quot;) +
+  labs(title=&quot;Histograma de Felicidad con Colores&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;, size=14),
+        axis.title = element_text(face=&quot;bold&quot;),
+        legend.position = &quot;none&quot;)  # Ocultar leyenda para estética</code></pre>
+<pre class="r"><code>ggplot(felicidad, aes(x=Indice_de_felicidad, fill=..count..)) +
+  geom_histogram(binwidth=0.5, color=&quot;black&quot;) +
+  scale_fill_gradient(low=&quot;blue&quot;, high=&quot;red&quot;) +
+  labs(title=&quot;Histograma de Felicidad con Colores&quot;, x=&quot;Puntuación de Felicidad&quot;, y=&quot;Frecuencia&quot;) +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;, size=14),
+        axis.title = element_text(face=&quot;bold&quot;),
+        legend.position = &quot;none&quot;)  # Ocultar leyenda para estética</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(count)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning
+## was generated.</code></pre>
+<p><img src="semana1_teorica_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="reto---nivel-2" class="section level1">
+<h1>Reto - Nivel 2</h1>
+<p>Crea una variable ordinal a partir de su puntaje de felicidad.</p>
+<pre class="{{r}}"><code>felicidad &lt;- felicidad %&gt;%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c(&quot;Bajo&quot;, &quot;Medio-Bajo&quot;, &quot;Medio-Alto&quot;, &quot;Alto&quot;), 
+                             ordered_result = TRUE))  # Variable ordinal</code></pre>
+<pre class="r"><code>felicidad &lt;- felicidad %&gt;%
+  mutate(Grados_felicidad = cut(Indice_de_felicidad, 
+                             breaks = c(1, 3, 5, 7, 10),  # Definir los cortes
+                             labels = c(&quot;Bajo&quot;, &quot;Medio-Bajo&quot;, &quot;Medio-Alto&quot;, &quot;Alto&quot;), 
+                             ordered_result = TRUE))  # Variable ordinal</code></pre>
+<pre class="{{r}}"><code># Crear una tabla de frecuencia
+tabla_frecuencia &lt;- felicidad %&gt;%
+  count(Grados_felicidad) %&gt;%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia</code></pre>
+<pre class="r"><code># Crear una tabla de frecuencia
+tabla_frecuencia &lt;- felicidad %&gt;%
+  count(Grados_felicidad) %&gt;%
+  mutate(Porcentaje = round(n / sum(n) * 100, 1))
+tabla_frecuencia</code></pre>
+<pre><code>##   Grados_felicidad  n Porcentaje
+## 1             Bajo  2        1.4
+## 2       Medio-Bajo 45       30.6
+## 3       Medio-Alto 91       61.9
+## 4             Alto  9        6.1</code></pre>
+</div>
+<div id="reto---nivel-3" class="section level1">
+<h1>Reto - Nivel 3</h1>
+<p>Elegir una variable categórica y otra numérica (la numérica puede ser
+una escala likert de 1 a 7) del Barómetro de las Américas 2023. Recuerda
+revisar el cuestionario.</p>
+<p><a href="https://www.vanderbilt.edu/lapop/peru.php"
+class="uri">https://www.vanderbilt.edu/lapop/peru.php</a></p>
+<div id="materiales-de-consulta" class="section level2">
+<h2>📂 Materiales de consulta:</h2>
+<ul>
+<li>📜 <a
+href="https://www.vanderbilt.edu/lapop/peru/ABPer2023-Peru-Questionnaire-V9.2.3.0-Spa-230309-W.pdf">Cuestionario
+LAPOP</a><br />
+</li>
+<li>🎥 <a href="https://www.youtube.com/watch?v=P_BzArTUOWQ">Ver
+Video</a><br />
+</li>
+</ul>
+</div>
 </div>
 
 
