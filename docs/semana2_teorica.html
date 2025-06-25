@@ -32,8 +32,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -358,10 +356,43 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="semana8_teorica.html">Sesión Teórica</a>
-    </li>
-    <li>
       <a href="semana8_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 10
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana9_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 11
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana10_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 12
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana11_practica.html">Práctica Dirigida</a>
     </li>
   </ul>
 </li>
@@ -684,25 +715,19 @@ una tabla.</p></li>
   summarize(Promedio=mean(manifestaciones_ley,na.rm=T),Mediana=median(manifestaciones_ley,na.rm=T)) %&gt;%   ## Paso 2: Resumir 
   kable() %&gt;%  # Paso 3: Convierte la tabla en código HTML
   kable_styling()# Paso 4: Se visualiza mejor la tabla.Esto te servirá cuando utilices Rmd dado que este crear un archivo HTML.</code></pre>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<pre><code>## Warning in kable_styling(.): Please specify format in kable. kableExtra can customize
+## either HTML or LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
+<table>
 <thead>
-<tr>
-<th style="text-align:right;">
-Promedio
-</th>
-<th style="text-align:right;">
-Mediana
-</th>
+<tr class="header">
+<th align="right">Promedio</th>
+<th align="right">Mediana</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-6.158584
-</td>
-<td style="text-align:right;">
-6
-</td>
+<tr class="odd">
+<td align="right">6.158584</td>
+<td align="right">6</td>
 </tr>
 </tbody>
 </table>

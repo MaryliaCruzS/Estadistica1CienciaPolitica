@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Práctica dirigida 8</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística para el Análisis Político 1</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Inicio</a>
+</li>
+<li>
+  <a href="pasosbasicos.html">Pasos básicos</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana1_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana2_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana2_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana3_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana3_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 7
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana7_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana7_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 8
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana8_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 10
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana9_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 11
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana10_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 12
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana11_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Práctica dirigida 8</h1>
+
+</div>
+
+
+<center>
+<img src=" " width="200"/>
+</center>
+<p><strong>FACULTAD DE CIENCIAS SOCIALES - PUCP</strong><br></p>
+<div
+id="curso-pol-278---estadística-para-el-análisis-político-1-semestre-2025---1"
+class="section level2">
+<h2>Curso: POL 278 - Estadística para el análisis político 1 | Semestre
+2025 - 1 <br></h2>
+<hr />
+</div>
+<div id="i.-análisis-de-regresión-lineal-simple-rls-ideas-clave"
+class="section level1">
+<h1><strong>I. Análisis de regresión lineal simple (RLS): ideas
+clave</strong></h1>
+<p>Técnica estadística que predice el valor de una variable con los
+valores de otra. La regresión lineal simple es un método útil para
+predecir una respuesta cuantitativa <strong>Y</strong> partiendo de una
+sola variable predictora <strong>X</strong>, asumiendo que hay una
+relación aproximadamente lineal entre X e Y. Matemáticamente, esta
+relación lineal se representa como</p>
+<p><strong>Y = a + bX + E</strong></p>
+<ul>
+<li><p>Y = variable dependiente o explicada. Variable cuyos valores se
+desea predecir o resumir. Un modelo de regresión lineal tiene como
+variable dependiente una variable numérica</p></li>
+<li><p>a = Constante: ordenada en el origen, valor esperado de “Y”
+cuando X=0</p></li>
+<li><p>b = Pendiente: mide el cambio de la variable “Y” por cada unidad
+de cambio de “X”. Su magnitud sirve para predecir en cuánto aumentará
+“y” cada vez que “x” se incremente en una unidad.Su signo puede ser
+positivo o negativo, y en esto la interpretación coincide con la
+correlación.</p></li>
+<li><p>X = variable utilizada para predecir el valor de la variable
+dependiente. También se denomina variable predictora o variable
+explicativa. Las variables explicativas que son parte del modelo suelen
+ser numéricas o intervalares; sin embargo, es posible incorporar
+variables explicativas ordinales o categóricas.</p></li>
+<li><p>E = Corresponde a las desviaciones de los valores verdaderos de Y
+con respecto a los valores esperados de “Y” (diferencia entre lo
+observado y estimado por el modelo). Asumimos que es independiente de
+“X”.</p></li>
+</ul>
+<p>La relación entre las variables depende de la pendiente:</p>
+<ul>
+<li><p>Si b es positivo, Y aumenta cuando X aumenta. Es una relación
+directa / positiva.</p></li>
+<li><p>Si b es negativo, Y aumenta cuando X disminuye. Es una relación
+inversa / negativa.</p></li>
+<li><p>Si b es cero.Y no cambia cuando X varía. No existe relación entre
+las variables.</p></li>
+</ul>
+<p>Asimismo, con el método de la regresión lineal se puede responder las
+siguientes preguntas:</p>
+<ul>
+<li><p>Analizar si hay una <strong>asociación</strong> entre las
+variables mediante un test de independencia estadística.</p></li>
+<li><p>Analizar la <strong>dirección</strong> de la asociación (directa
+o inversa).</p></li>
+<li><p>Evaluar la <strong>fuerza</strong> de la asociación usando una
+medida de asociación llamada <em>correlación de Pearson</em>.</p></li>
+<li><p>Estimar una ecuación de regresión que <strong>“predice”</strong>
+los valores de la variable dependiente para valores de la variable
+independiente.</p></li>
+</ul>
+</div>
+<div id="ii.-aplicación-práctica" class="section level1">
+<h1><strong>II. Aplicación práctica</strong></h1>
+<p>Para la sesión de hoy trabajaremos con datos del 2017 de una base de
+datos que contiene variables obtenidas de las siguientes bases: -
+Freedom in the World - V-Dem - Democracy Index - Global Corruption
+Barometer</p>
+<p>Información sobre las bases: - Freedom in the World es elaborado por
+Freedom House y analiza los siguientes aspectos: el proceso electoral,
+las políticas pluriculturales y la participación, el funcionamiento del
+gobierno, la libertad de expresión y de creencia, los derechos de
+asociación y organización, el estado de derecho, la autonomía personal y
+los derechos individuales.</p>
+<ul>
+<li><p>V-Dem es publicada por el V-Dem Institute. En ella se describe la
+calidad de los gobiernos a partir de información de 542 indicadores. La
+sata describe todos los aspectos de un gobierno, brindándo énfasis en la
+calidad de la democracia, la inclusividad y otros indicadores
+económicos.</p></li>
+<li><p>Democracy Index es elaborado por The Economist y utiliza 60
+indicadores, agrupados en cinco categorías: proceso electoral y
+pluralismo, libertades civiles, funcionamiento del gobierno,
+participación política y política cultural. A partir de estas categorías
+posiciona a los países en alguno de los cuatro tipos de régimen:
+Democracia plena, democracia imperfecta, régimen híbrido y régimen
+autoritario.</p></li>
+<li><p>Global Corruption Barometer es publicado por Transparencia
+Internacional y contiene información proveniente de la opinión pública
+ciudadana</p></li>
+</ul>
+<pre class="r"><code>library(rio)
+data=import(&quot;BD_corrupcion.xlsx&quot;)</code></pre>
+<div
+id="la-percepción-de-corrupción-en-los-funcionarios-impacta-en-el-puntaje-del-índice-de-la-democracia"
+class="section level2">
+<h2><strong>¿La percepción de corrupción en los funcionarios impacta en
+el puntaje del índice de la democracia?</strong></h2>
+<p>Ejercicio 1: Impacto de la percepción de la corrupción de
+funcionarios en el puntaje de democracia participativa (según V-Dem),
+por país.</p>
+<p>Las variables que utilizaremos serán:</p>
+<p><strong>c_funcionarios</strong> = Porcentaje de personas que opinan
+que la mayoría o todos los funcionarios del gobierno están envueltos en
+corrupción</p>
+<p><strong>Part</strong> = Indicador de democracia participativa -
+Vdem</p>
+<div id="gráfico-de-dispersión" class="section level3">
+<h3>Gráfico de dispersión:</h3>
+<p>Elaboramos el gráfico de dispersión y la recta</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+data %&gt;%
+  ggplot(aes (x=c_funcionarios*100, y=Part)) +
+  geom_point(colour=&quot;skyblue4&quot;) +  
+  xlab(&quot;% de personas que opinan \n que la mayoría/todos  los funcionarios \n 
+       públicos están involucrados en corrupción&quot;) +  
+  ylab(&quot;Índicador de democracia participativa&quot;)+ theme_light() + 
+  geom_smooth(method=&quot;lm&quot;, se = T, colour=&quot;green4&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="semana10_practica_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>A primera vista parece haber un leve impacto, y la relación entre
+nuestras variables se perfila como negativa. Comprobémoslo …</p>
+</div>
+<div id="creación-del-modelo" class="section level3">
+<h3>Creación del modelo</h3>
+<pre class="r"><code>modelo1=lm(Part~c_funcionarios,data=data)
+summary(modelo1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Part ~ c_funcionarios, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.41744 -0.12712  0.00909  0.13936  0.35691 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     0.49004    0.03944  12.425  &lt; 2e-16 ***
+## c_funcionarios -0.31779    0.10258  -3.098  0.00245 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1768 on 114 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.07765,    Adjusted R-squared:  0.06956 
+## F-statistic: 9.598 on 1 and 114 DF,  p-value: 0.002453</code></pre>
+</div>
+<div id="interpretación" class="section level3">
+<h3>Interpretación</h3>
+<p><em>¿El porcentaje de personas que creen que los funcionarios son
+corruptos influyen en el indicador de democracia participativa?</em></p>
+<p>Para interpretar los resultados del modelo debemos tener presente lo
+siguiente:</p>
+<div id="primero-p-value" class="section level4">
+<h4>Primero: p-value</h4>
+<p>Sabremos si la variable independiente impacta en la dependiente al
+revisar la significancia del p valor.</p>
+<p>Establezcamos nuestras hipótesis:</p>
+<ul>
+<li><p>H0: El modelo de regresión no es válido</p></li>
+<li><p>H1: El modelo de regresión es válido (variable X aporta al
+modelo)</p></li>
+</ul>
+<p>Como el p valor es <strong>0.002453</strong>, entonces podemos
+afirmar que hay suficiente evidencia para rechazar la H0, por lo que
+concluimos que el modelo sí es válido como modelo de predicción. Es
+decir, podemos decir que hay evidencia estadística suficiente para
+afirmar que existe una relación significativa entre el índice de
+democracia participativa y la percepción de funcionarios corruptos por
+país.</p>
+<p>En otras palabras, podemos decir que la percepción de funcionarios
+corruptos del país <em>sí influye</em> en el puntaje obtenido en el
+índice de democracia participativa.</p>
+</div>
+<div id="segundo-pendienteb" class="section level4">
+<h4>Segundo: pendiente/b</h4>
+<p>Explica cómo es el efecto de x en y. Para ello analizamos el valor
+del parámetro de la pendiente.</p>
+<p>En este caso, al ser este valor <strong>-0.31779</strong>, concluímos
+que cada vez que el valor de la percepción de corrupción en el país
+aumenta en 1, el puntaje del índice de democracia participativa
+disminuye en 0.318. Es decir, tenemos una <em>relación inversa o
+negativa</em>.</p>
+</div>
+<div id="tercero-r2" class="section level4">
+<h4>Tercero: R<sup>2</sup></h4>
+<p>Analizar cuánto de la variabilidad de la variable dependiente (y) es
+explicada por la variable independiente (x), para ello revisamor el
+<strong>R<sup>2</sup></strong> (Multiple R-squared). Los valores van de
+0 a 1. Mientras más cercano esté el R2 a 1, mayor será la variabilidad
+explicada. El R2 es un indicador de ajuste del modelo.</p>
+<p>En nuestro modelo, este arrojó el valor de <strong>0.07765</strong>,
+por lo que podemos concluir que aproximadamente el <strong>7.8%</strong>
+(0.07765*100)de la variabilidad en el índice de democracia participativa
+puede ser explicado porel porcentaje de personas que opinan que la
+mayoría/todos los funcionarios están envueltos en corrupción.</p>
+<p>Esto quiere decir que la cantidad de variabilidad explicada es
+relativamente baja. Por lo que podemos afirmar que hay otros factores
+más importantes o complejos que afectan la percepción de corrupción en
+cada país.</p>
+</div>
+<div id="cuarto-ecuación-de-la-recta" class="section level4">
+<h4>Cuarto: Ecuación de la recta</h4>
+<p>Hallar la ecuación de la recta del modelo. Para lograrlo, revisemos
+los dos valores de la tabla que se encuentran en la columna de
+“Estimate”, el valor de la primera fila es el del intercepto (a) y el de
+la segunda es el de la pendiente (b).</p>
+<p>Del segundo paso, ya conocíamos que el valor de la pendiente es
+<strong>-0.31779.</strong> Si volvemos a revisar nuestra tabla podemos
+observar que en el cruce de Estimate e Intercept está el valor de
+<strong>0.49004</strong>, este sería nuestro intercepto. Ahora, armemos
+nuestra ecuación de la recta:</p>
+<p><strong>Ŷ = 0.49004 - 0.31779∗X</strong></p>
+<p>Donde:</p>
+<ul>
+<li>X = Porcentaje de personas que opinan que la mayoría o todos los
+funcionarios del gobierno están envueltos en corrupción -
+(independiente)</li>
+<li>Y = Indicador de democracia participativa - (dependiente)</li>
+</ul>
+<p><strong>¿Qué se quiere saber?</strong>: Queremos saber si el % de
+personas que opinan que los funcionarios son corruptos influye en el
+indicador de democracia participativa.</p>
+<p>Esa ecuación crea una línea recta en el diagrama de dispersión que
+representa la relación entre ambas variables y además indica que el
+cambio esperado en nuestra variable dependiente (Porcentaje de personas
+que opinan que la mayoría o todos los funcionarios del gobierno están
+envueltos en corrupción) por cada cambio de una unidad en nuestra
+variable independiente (Indicador de democracia participativa). Así, con
+esta ecuación se puede estimar el valor de Y para cualquier valor de
+X.</p>
+<p>También podemos obtener los coeficientes de intercepción/intercepto y
+pendiente de la siguiente forma:</p>
+<pre class="r"><code>modelo1$coefficients</code></pre>
+<pre><code>##    (Intercept) c_funcionarios 
+##      0.4900430     -0.3177901</code></pre>
+</div>
+<div id="quinto-predecir" class="section level4">
+<h4>Quinto: Predecir</h4>
+<p>Podemos utilizar la relación linear establecida por la ecuación para
+estimar el valor de la variable dependiente (Y) para un valor dado de la
+variable independiente (X).</p>
+<p>Por ejemplo, si queremos calcular el valor de porcentaje de personas
+que opinan que la mayoría/todos los funcionarios están envueltos en
+corrupción cuando el índice de democracia participativa (0 a 1) es 0.4,
+solo tenemos que reemplazar el valor de x por 0.4 en nuestra
+ecuación.</p>
+<p>Sustituyendo el valor de “x” en la ecuación, tenemos:</p>
+<p><strong>Ŷ = 0.49004 - 0.31779 * 0.4</strong></p>
+<p><strong>Ŷ = 0.49004 - 0.12712</strong></p>
+<p><strong>Ŷ = 0.36292</strong></p>
+<p>Por lo tanto, utilizando la ecuación de la recta, cuando el
+porcentaje de personas que cree que existen funcionarios corruptos es
+40% (0.4) , podemos predecir que el índice de democracia será de,
+aproximadamente, 0.36 puntos.</p>
+<p>Asimismo, se puede afirmar que, de acuerdo al modelo, por cada unidad
+de aumento del % de percepción de corrupción, el índice de democracia se
+reduce en 0.32 puntos.</p>
+<p>Ejercicio 2: Impacto de la percepción de derechos políticos en el
+puntaje del índice de libertad (según Freedom House), por país</p>
+<p>Las variables que utilizaremos serán:</p>
+<p><strong>Der_pol</strong> = Puntaje del indicador de derechos
+políticos</p>
+<p><strong>Libertad</strong> = Puntuación de libertad - Freedom
+House</p>
+</div>
+</div>
+</div>
+<div id="los-derechos-políticos-impactan-en-el-puntaje-de-libertad"
+class="section level2">
+<h2><strong>¿Los derechos políticos impactan en el puntaje de
+libertad?</strong></h2>
+<div id="gráfico-de-dispersión-1" class="section level3">
+<h3>Gráfico de dispersión:</h3>
+<p>Elaboramos el gráfico de dispersión y la recta</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+data %&gt;%
+  ggplot(aes (x=Der_pol, y=Libertad)) +
+  geom_point(colour=&quot;blue2&quot;) +  
+  xlab(&quot;Puntaje del indicador de derechos políticos&quot;) +  
+  ylab(&quot;Puntaje del índice de libertad&quot;)+ theme_light() + 
+  geom_smooth(method=&quot;lm&quot;, se = T, colour=&quot;red3&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 4 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="semana10_practica_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>A primera vista parece haber un impacto fuerte, y la relación entre
+nuestras variables se perfila como negativa o inversa.</p>
+</div>
+<div id="creación-del-modelo-1" class="section level3">
+<h3>Creación del modelo</h3>
+<pre class="r"><code>modelo2=lm(Libertad~Der_pol,data=data)
+summary(modelo2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Libertad ~ Der_pol, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -15.4645  -3.2478   0.3189   4.1001  10.5355 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 103.2894     1.0177  101.50   &lt;2e-16 ***
+## Der_pol     -12.6083     0.2749  -45.86   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.669 on 112 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.9494, Adjusted R-squared:  0.949 
+## F-statistic:  2103 on 1 and 112 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="interpretación-1" class="section level3">
+<h3>Interpretación</h3>
+<div id="primero-p-value-1" class="section level4">
+<h4>Primero: p-value</h4>
+<p>Sabremos si la variable independiente impacta en la dependiente al
+revisar la significancia del p valor.</p>
+<p>Establezcamos nuestras hipótesis:</p>
+<ul>
+<li><p>H0: El modelo de regresión no es válido</p></li>
+<li><p>H1: El modelo de regresión es válido (variable X aporta al
+modelo)</p></li>
+</ul>
+<p>Como el p valor es <strong>2.2e-16</strong>, entonces podemos afirmar
+que hay suficiente evidencia para rechazar la H0, por lo que concluimos
+que el modelo sí es válido como modelo de predicción. Es decir, podemos
+decir que hay evidencia estadística suficiente para afirmar que existe
+una relación significativa entre el puntaje del indicador de derechos
+políticos y el puntaje del índice de Libertad, por país.</p>
+<p>En otras palabras, podemos decir que la percepción de la existencia
+de derechos políticos <em>sí influye</em> en el puntaje obtenido en el
+índice de libertad.</p>
+</div>
+<div id="segundo-pendienteb-1" class="section level4">
+<h4>Segundo: pendiente/b</h4>
+<p>Explica cómo es el efecto de x en y. Para ello analizamos el valor
+del parámetro de la pendiente.</p>
+<p>En este caso, al ser este valor <strong>-12.6083</strong>, concluimos
+que cada vez que el valor de la percepción de la existencia de derechos
+políticos en el país aumenta en 1, el puntaje del índice de libertad
+disminuye en 12.61 puntos. Es decir, tenemos una <em>relación inversa o
+negativa</em>.</p>
+</div>
+<div id="tercero-r2-1" class="section level4">
+<h4>Tercero: R<sup>2</sup></h4>
+<p>Analizar cuánto de la variabilidad de la variable dependiente (y) es
+explicada por la variable independiente (x), para ello revisamor el
+<strong>R<sup>2</sup></strong> (Multiple R-squared). Los valores van de
+0 a 1. Mientras más cercano esté el R2 a 1, mayor será la variabilidad
+explicada. El R2 es un indicador de ajuste del modelo.</p>
+<p>En nuestro modelo, este arrojó el valor de <strong>0.9494</strong>,
+por lo que podemos concluir que aproximadamente el <strong>95%</strong>
+(0.9494*100)de la variabilidad en el puntaje de percepción de derechos
+políticos respecto del índice de libertad.</p>
+<p>Esto quiere decir que la cantidad de variabilidad explicada es muy
+alta. Por tanto, podemos afirmar que la percepción de la existencia de
+derechos políticos tiene el impacto mayoritario sobre el puntaje del
+índice de la libertad.</p>
+</div>
+<div id="cuarto-ecuación-de-la-recta-1" class="section level4">
+<h4>Cuarto: Ecuación de la recta</h4>
+<p>Hallar la ecuación de la recta del modelo. Para lograrlo, revisemos
+los dos valores de la tabla que se encuentran en la columna de
+“Estimate”, el valor de la primera fila es el del intercepto (a) y el de
+la segunda es el de la pendiente (b).</p>
+<p>Del segundo paso, ya conocíamos que el valor de la pendiente es
+<strong>-12.6083.</strong> Si volvemos a revisar nuestra tabla podemos
+observar que en el cruce de Estimate e Intercept está el valor de
+<strong>103.2894</strong>, este sería nuestro intercepto. Ahora, armemos
+nuestra ecuación de la recta:</p>
+<p><strong>Ŷ = 103.2894 -12.6083∗X</strong></p>
+<p>Donde:</p>
+<ul>
+<li>X = Puntaje del indicador de derechos políticos -
+(independiente)</li>
+<li>Y = Indicador de libertad, seún Freedom House - (dependiente)</li>
+</ul>
+<p>También podemos obtener los coeficientes de intercepción/intercepto y
+pendiente de la siguiente forma:</p>
+<pre class="r"><code>modelo2$coefficients</code></pre>
+<pre><code>## (Intercept)     Der_pol 
+##   103.28943   -12.60832</code></pre>
+</div>
+<div id="quinto-predecir-1" class="section level4">
+<h4>Quinto: Predecir</h4>
+<p>Podemos utilizar la relación linear establecida por la ecuación para
+estimar el valor de la variable dependiente (Y) para un valor dado de la
+variable independiente (X).</p>
+<p>Por ejemplo, si queremos calcular el valor de porcentaje de personas
+que opinan que la mayoría/todos los funcionarios están envueltos en
+corrupción cuando el índice de democracia participativa (0 a 1) es 0.4,
+solo tenemos que reemplazar el valor de x por 0.4 en nuestra
+ecuación.</p>
+<p>Sustituyendo el valor de “x” en la ecuación, tenemos:</p>
+<p><strong>Ŷ = 103.2894 -12.6083∗X * 6</strong></p>
+<p><strong>Ŷ = 103.2894 - 75.6498</strong></p>
+<p><strong>Ŷ = 27.6396</strong></p>
+<p>Por lo tanto, utilizando la ecuación de la recta, cuando el puntaje
+del indicador de derechos políticos en un país es 6 , podemos predecir
+que aproximadamente el puntaje del indicador de libertad será de 27.7
+puntos en ese país.</p>
+<p>Ejercicio 3: Impacto de la percepción de funcionamiento del gobierno
+en el puntaje del índice de democracia (según Democracy Index), por
+país</p>
+<p>Las variables que utilizaremos serán:</p>
+<p><strong>Fun_gob</strong> = Puntaje del indicador de funcionamiento
+del gobierno</p>
+<p><strong>Democracia</strong> = Puntuación del indice de democracia -
+Democracy Index</p>
+</div>
+</div>
+</div>
+<div
+id="la-percepción-del-funcionamiento-del-gobierno-influye-en-el-puntaje-del-indice-de-la-democracia-democracy-index"
+class="section level2">
+<h2><strong>¿La percepción del funcionamiento del gobierno influye en el
+puntaje del indice de la democracia (Democracy Index)?</strong></h2>
+<div id="gráfico-de-dispersión-2" class="section level3">
+<h3>Gráfico de dispersión:</h3>
+<p>Elaboramos el gráfico de dispersión y la recta</p>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+data %&gt;%
+  ggplot(aes (x=Fun_gob, y=Democracia)) +
+  geom_point(colour=&quot;yellow4&quot;) +  
+  xlab(&quot;Puntaje del indicador de derechos políticos&quot;) +  
+  ylab(&quot;Puntaje del índice de libertad&quot;)+ theme_light() + 
+  geom_smooth(method=&quot;lm&quot;, se = T, colour=&quot;purple3&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 4 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="semana10_practica_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>A primera vista parece haber un impacto moderado o mediano, y la
+relación entre nuestras variables se perfila como positiva o
+directa.</p>
+</div>
+<div id="creación-del-modelo-2" class="section level3">
+<h3>Creación del modelo</h3>
+<pre class="r"><code>modelo3=lm(Democracia~Fun_gob,data=data)
+summary(modelo3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Democracia ~ Fun_gob, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.62244 -0.36708  0.09834  0.48131  1.30293 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.0470     0.1825   11.22   &lt;2e-16 ***
+## Fun_gob       0.7351     0.0324   22.69   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7665 on 112 degrees of freedom
+##   (4 observations deleted due to missingness)
+## Multiple R-squared:  0.8213, Adjusted R-squared:  0.8197 
+## F-statistic: 514.7 on 1 and 112 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="interpretación-2" class="section level3">
+<h3>Interpretación</h3>
+<div id="primero-p-value-2" class="section level4">
+<h4>Primero: p-value</h4>
+<p>Sabremos si la variable independiente impacta en la dependiente al
+revisar la significancia del p valor.</p>
+<p>Establezcamos nuestras hipótesis:</p>
+<ul>
+<li><p>H0: El modelo de regresión no es válido</p></li>
+<li><p>H1: El modelo de regresión es válido (variable X aporta al
+modelo)</p></li>
+</ul>
+<p>Como el p valor es <strong>2.2e-16</strong>, entonces podemos afirmar
+que hay suficiente evidencia para rechazar la H0, por lo que concluimos
+que el modelo sí es válido como modelo de predicción. Es decir, podemos
+decir que hay evidencia estadística suficiente para afirmar que existe
+una relación significativa entre el puntaje del indicador del
+funcionamiento del gobierno y el puntaje del índice de la democracia,
+por país.</p>
+<p>En otras palabras, podemos decir que la percepción acerca del
+funcionamiento del gobierno <em>sí influye</em> en el puntaje obtenido
+en el índice de la democracia.</p>
+</div>
+<div id="segundo-pendienteb-2" class="section level4">
+<h4>Segundo: pendiente/b</h4>
+<p>Explica cómo es el efecto de x en y. Para ello analizamos el valor
+del parámetro de la pendiente.</p>
+<p>En este caso, al ser este valor <strong>0.7351</strong>, concluimos
+que cada vez que el valor de la percepción de un buen funcionamiento del
+gobierno en el país aumenta en 1, el puntaje del índice de democracia
+aumenta en 0.74 puntos. Es decir, tenemos una <em>relación directa o
+positiva</em>.</p>
+</div>
+<div id="tercero-r2-2" class="section level4">
+<h4>Tercero: R<sup>2</sup></h4>
+<p>Analizar cuánto de la variabilidad de la variable dependiente (y) es
+explicada por la variable independiente (x), para ello revisamor el
+<strong>R<sup>2</sup></strong> (Multiple R-squared). Los valores van de
+0 a 1. Mientras más cercano esté el R2 a 1, mayor será la variabilidad
+explicada. El R2 es un indicador de ajuste del modelo.</p>
+<p>En nuestro modelo, este arrojó el valor de <strong>0.8213</strong>,
+por lo que podemos concluir que aproximadamente el <strong>82%</strong>
+(0.8213*100)del puntaje en el índice de la democracia es explicado por
+la percepción del funcionamiento del gobierno del país.</p>
+<p>Esto quiere decir que la cantidad de variabilidad explicada es alta
+(sin llegar a ser muy alta). Por tanto, podemos afirmar que la
+percepción de un buen funcionamiento del gobierno tiene un impacto
+considerable sobre el puntaje del índice de la democracia.</p>
+</div>
+<div id="cuarto-ecuación-de-la-recta-2" class="section level4">
+<h4>Cuarto: Ecuación de la recta</h4>
+<p>Hallar la ecuación de la recta del modelo. Para lograrlo, revisemos
+los dos valores de la tabla que se encuentran en la columna de
+“Estimate”, el valor de la primera fila es el del intercepto (a) y el de
+la segunda es el de la pendiente (b).</p>
+<p>Del segundo paso, ya conocíamos que el valor de la pendiente es
+<strong>+0.7351</strong> Si volvemos a revisar nuestra tabla podemos
+observar que en el cruce de Estimate e Intercept está el valor de
+<strong>2.0470</strong>, este sería nuestro intercepto. Ahora, armemos
+nuestra ecuación de la recta:</p>
+<p><strong>Ŷ =2.0470 + 0.7351∗X</strong></p>
+<p>Donde:</p>
+<ul>
+<li>X = Puntaje del indicador de funcionamiento del gobierno -
+(independiente)</li>
+<li>Y = Indicador de democracia, según el Democracy Index -
+(dependiente)</li>
+</ul>
+<p>También podemos obtener los coeficientes de intercepción/intercepto y
+pendiente de la siguiente forma:</p>
+<pre class="r"><code>modelo3$coefficients</code></pre>
+<pre><code>## (Intercept)     Fun_gob 
+##   2.0470146   0.7350849</code></pre>
+</div>
+<div id="quinto-predecir-2" class="section level4">
+<h4>Quinto: Predecir</h4>
+<p>Sustituyendo el valor de “x” en la ecuación, tenemos:</p>
+<p><strong>Ŷ = 2.0470 + 0.7351∗X * 1.5</strong></p>
+<p><strong>Ŷ = 2.0470 + 1.10265</strong></p>
+<p><strong>Ŷ = 3.14965</strong></p>
+<p>Por lo tanto, utilizando la ecuación de la recta, cuando el puntaje
+del indicador de funcionamiento del gobierno en un país es 1.5, podemos
+predecir que aproximadamente el puntaje del indicador de democracia será
+de 3.15 puntos en ese país.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="practica-resolviendo-los-siguientes-ejercicios-en-casa"
+class="section level1">
+<h1><strong>Practica resolviendo los siguientes ejercicios en
+casa</strong></h1>
+<p>Ejercicio 1: Impacto del % de personas que creen que los congresistas
+están envueltos en actos de corrupción (c_congreso) en el índice de
+participación política de V-Dem (Part).</p>
+<p>Ejercicio 2: Impacto de la percepción ciudadana acerca de los
+procesos electorales (Proceso_elect) en el índice de la democracia de
+Democracy Index (Democracia).</p>
+<p>Ejercicio 3: Impacto de la percepción sobre libertades civiles
+(Lib_civiles) en el puntaje del índice de la libertad de Freedom House
+(Libertad).</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

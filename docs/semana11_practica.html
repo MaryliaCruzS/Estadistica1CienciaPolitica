@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Práctica Dirigida 9</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Estadística para el Análisis Político 1</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Inicio</a>
+</li>
+<li>
+  <a href="pasosbasicos.html">Pasos básicos</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana1_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana2_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana2_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana3_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana3_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana4_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana4_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana5_teorica.html">Sesión Teórica</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 6
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana6_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana6_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 7
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana7_teorica.html">Sesión Teórica</a>
+    </li>
+    <li>
+      <a href="semana7_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 8
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana8_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 10
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana9_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 11
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana10_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Semana 12
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="semana11_practica.html">Práctica Dirigida</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Práctica Dirigida 9</h1>
+
+</div>
+
+
+<p><strong>FACULTAD DE CIENCIAS SOCIALES - PUCP</strong><br></p>
+<div
+id="curso-pol-278---estadística-para-el-análisis-político-1-semestre-2025---1"
+class="section level2">
+<h2>Curso: POL 278 - Estadística para el análisis político 1 | Semestre
+2025 - 1 <br></h2>
+<hr />
+</div>
+<div id="regresión-lineal-múltiple" class="section level1">
+<h1><strong>Regresión lineal múltiple</strong></h1>
+<p>Hasta el momento, nos hemos encontrado en el campo del análisis
+bivariado. Sin embargo, en el mundo social, difícilmente se pueden
+explicar los fenómenos de interés con una sola variable. Incluso si nos
+interesa evaluar el efecto de un a variable en específico sobre un
+fenómeno de estudio, hay muchos otros factores que podrían influir en
+aquello que nos interesa explorar. Por ello, necesitamos recurrir al
+<strong>análisis multivariado</strong> y conocer el concepto de
+<strong>control estadístico</strong>.</p>
+<p>El control estadístico nos permite aislar el efecto de otras
+variables. La idea es:</p>
+<ul>
+<li><p>Evaluar si la asociación entre X e Y permanece si se remueve el
+efecto de otra variable, es decir, si se controla por una tercera
+variable.</p></li>
+<li><p>Se analiza la relación entre X e Y para valores similares o
+iguales de una variable Z. De esta manera se elimina la influencia de Z
+en la relación entre X e Y. Lo anterior nos ayuda a acercarnos a una
+interpretación causar X -&gt; Y.</p></li>
+<li><p>Si la relación entre X e Y desaparece cuando se controla por Z,
+se dice que la relación era espúrea. En otras palabras, la relación
+dependendia de la influencia de Z y no de una conexión directa entre X e
+Y.</p></li>
+</ul>
+</div>
+<div id="aplicación-práctica" class="section level1">
+<h1>Aplicación práctica</h1>
+<div
+id="factores-que-determinan-el-acceso-a-la-información-en-los-estados"
+class="section level2">
+<h2><strong>Factores que determinan el acceso a la información en los
+Estados</strong></h2>
+<p>El acceso a la información es fundamental para el funcionamiento de
+cualquier Estado democrático, ya que promueve la transparencia, la
+responsabilidad y la participación ciudadana.</p>
+<p>Para poder realizar el análisis se han revisado las siguientes
+fuentes:</p>
+<p><strong>Digital Access Index</strong> El Índice de Acceso Digital es
+utilizado para medir y evaluar el nivel de acceso a las tecnologías
+digitales y a internet. Proporciona una medida de hasta qué punto las
+personas y las comunidades pueden utilizar y beneficiarse de las
+tecnologías digitales.</p>
+<p><strong>Egov-index</strong> El Índice de Gobierno Electrónico es una
+medida que evalúa el nivel de desarrollo y adopción de tecnologías de la
+información y la comunicación (TIC) en el sector público. Este índice se
+utiliza para medir la capacidad de los gobiernos para proporcionar
+servicios en línea, promover la participación ciudadana y utilizar las
+TIC de manera efectiva en la gestión gubernamental.</p>
+<p><strong>Democracy Index</strong> El Índice de Democracia es un índice
+que mide el estado de la democracia en países de todo el mundo. Es
+elaborado por The Economist (EIU) y evalúa el funcionamiento de los
+procesos e instituciones democráticas.</p>
+<p>A partir de la información recolectada se ha creado una base de datos
+llamada Egov, la cual se compone de diversos índices. Vamos a utilizar
+los siguientes:</p>
+<ul>
+<li>accesoInformacion: índice de acceso a la información del país.</li>
+<li>participaciónDigital: índice de participación digital de la
+población del país.</li>
+<li>Servicios_Online: índice de calidad de servicios en línea del
+país.</li>
+<li>Capital Humano: índice de capital humano de la población del
+país.</li>
+<li>Telecommunicacion_Infraestructura: índice de infraestructura de las
+comunicaciones del país.</li>
+<li>ProcesoElectoral: índice de transparencia del proceso
+electoral.</li>
+<li>Policulture: índice de tolerancia a la pluralidad en un país.</li>
+<li>UsuariosInternet: porcentaje de población que utiliza internet en un
+país.</li>
+</ul>
+<pre class="r"><code>library(rio)
+Egov=import(&quot;EGov.xlsx&quot;)
+names(Egov)</code></pre>
+<pre><code>## [1] &quot;pais&quot;                             &quot;participaciónDigital&quot;            
+## [3] &quot;Servicios_Online&quot;                 &quot;Capital_Humano&quot;                  
+## [5] &quot;Telecommunicacion_Infrastructura&quot; &quot;ProcesoElectoral&quot;                
+## [7] &quot;Policulture&quot;                      &quot;accesoInformacion&quot;               
+## [9] &quot;UsuariosInternet&quot;</code></pre>
+<p><strong>No olviden el análisis descriptivo antes de hacer los
+modelos.</strong></p>
+</div>
+<div id="modelo-1" class="section level2">
+<h2><strong>Modelo 1</strong></h2>
+<pre class="r"><code>library(tidyverse)
+
+modelo1 = lm(accesoInformacion ~participaciónDigital+Servicios_Online+Capital_Humano  +Telecommunicacion_Infrastructura+ProcesoElectoral+ Policulture +UsuariosInternet ,data=Egov)
+summary(modelo1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = accesoInformacion ~ participaciónDigital + Servicios_Online + 
+##     Capital_Humano + Telecommunicacion_Infrastructura + ProcesoElectoral + 
+##     Policulture + UsuariosInternet, data = Egov)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.204651 -0.033054  0.002505  0.032268  0.116256 
+## 
+## Coefficients:
+##                                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                      -0.1208398  0.0263792  -4.581 1.13e-05 ***
+## participaciónDigital             -0.0788712  0.0914304  -0.863  0.39004    
+## Servicios_Online                  0.0809775  0.0948445   0.854  0.39491    
+## Capital_Humano                    0.2968634  0.0555961   5.340 4.43e-07 ***
+## Telecommunicacion_Infrastructura  0.3561180  0.0782623   4.550 1.28e-05 ***
+## ProcesoElectoral                  0.0075843  0.0019182   3.954  0.00013 ***
+## Policulture                       0.0139957  0.0043417   3.224  0.00163 ** 
+## UsuariosInternet                  0.0015629  0.0006815   2.293  0.02355 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.06194 on 121 degrees of freedom
+## Multiple R-squared:  0.926,  Adjusted R-squared:  0.9217 
+## F-statistic: 216.3 on 7 and 121 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="interpretamos" class="section level2">
+<h2><strong>Interpretamos</strong></h2>
+<div id="el-modelo-es-válido" class="section level3">
+<h3><strong>¿El modelo es válido?</strong></h3>
+<p>Establezcamos nuestras hipótesis:</p>
+<ul>
+<li>H0: El modelo de regresión no es válido</li>
+<li>H1: El modelo de regresión es válido (las variables independientes
+aportan al modelo)</li>
+</ul>
+<p>Luego nos fijamos en el <strong>p-value</strong> Como el p valor es
+&lt; 2.2e-16 entonces podemos afirmar que hay suficiente evidencia para
+rechazar la H0, por lo que concluimos que el modelo es válido como
+modelo de predicción.</p>
+</div>
+<div id="qué-tanto-explica-el-modelo" class="section level3">
+<h3><strong>¿Qué tanto explica el modelo?</strong></h3>
+<p>Observamos el <strong>R2 ajustado</strong>.</p>
+<p>Analizar cuánto de la variabilidad de la variable dependiente (y) es
+explicada por las variables independientes elegidas, para ello revisamos
+el R2 (Adjusted R-squared, por ser un modelo lineal múltiple).</p>
+<p>En nuestro modelo, este arrojó el valor de 0.9217, por lo que podemos
+concluir que el modelo explica aproximadamente el 92.2% (0.9217*100) de
+la variabilidad en el acceso a la información (variable dependiente). En
+otras palabras, este valor alto de R cuadrado ajustado indica que el
+modelo se ajusta muy bien a los datos y hace un buen trabajo al explicar
+la relación entre las variables independientes y la variable
+dependiente. Sin embargo, el valor del R cuadrado ajustado no te dice
+nada sobre la significancia estadística de las variables individuales,
+ni sobre la causalidad. Por ello analizaremos también las variables de
+forma independiente en el siguiente paso.</p>
+<p><em>Recordemos que el R cuadrado puede tomar valores entre 0 y 1. Un
+R cuadrado de 1 indica que el modelo explica toda la variabilidad de la
+variable Y. Un R cuadrado de 0 indica que el modelo no explica nada de
+la variabilidad de la variable Y.</em></p>
+</div>
+<div id="las-variables-aportan-al-modelo" class="section level3">
+<h3><strong>¿Las variables aportan al modelo?</strong></h3>
+<p>Revisamos <strong>p-value</strong> por cada variable
+independiente.</p>
+<ul>
+<li>Esperamos obtener un p-value &lt;0.05.</li>
+<li>Nos damos cuenta que <em>no todas</em> las variables independientes
+tienen un p-value &lt;0.05, es el caso de: participaciónDigital y
+Servicios_Online</li>
+</ul>
+</div>
+<div id="cuáles-son-los-coeficientes-de-la-ecuación"
+class="section level3">
+<h3><strong>¿Cuáles son los coeficientes de la ecuación?</strong></h3>
+<p>Podemos obtener extraer los coeficientes del modelo:</p>
+<p><em>No olvidar identificar el signo de cada coeficiente, este tendrá
+repercusión en la ecuación y su futura aplicación</em></p>
+<pre class="r"><code>modelo1$coefficients</code></pre>
+<pre><code>##                      (Intercept)             participaciónDigital 
+##                     -0.120839771                     -0.078871158 
+##                 Servicios_Online                   Capital_Humano 
+##                      0.080977535                      0.296863439 
+## Telecommunicacion_Infrastructura                 ProcesoElectoral 
+##                      0.356118022                      0.007584279 
+##                      Policulture                 UsuariosInternet 
+##                      0.013995704                      0.001562898</code></pre>
+<p>De esa manera puedo hallar la ecuación:</p>
+<p><span class="math display">\[
+Y = -0.12 + \text{participaciónDigital} \times (-0.078) +
+\text{Servicios\_Online} \times (0.080) + \text{Capital\_Humano} \times
+(0.29) + \text{Telecommunicacion\_Infrastructura} \times (0.35) +
+\text{ProcesoElectoral} \times (0.0075) + \text{Policulture} \times
+(0.013) + \text{UsuariosInternet} \times (0.0015)
+\]</span></p>
+<p>Es decir, se tienen las siguientes relaciones entre VD y las VI:</p>
+<ul>
+<li><p>Por cada unidad adicional de puntaje en participación digital, el
+índice de acceso a la información <strong>disminuye en 0.078
+puntos</strong> (relación inversa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de servicios online, el
+índice de acceso a la información <strong>aumenta en 0.08
+puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje en Capital Humano, el índice
+de acceso a la información <strong>aumenta en 0.08 puntos</strong>
+(relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de telecomunicaciones e
+infraestructura, el índice de acceso a la información <strong>aumenta en
+0.35 puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de Procesos Electorales, el
+índice de acceso a la información <strong>aumenta en 0.0075
+puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de Cultura política, el
+índice de acceso a la información <strong>aumenta en 0.013
+puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de acceso de Usuarios a
+Internet, el índice de acceso a la información <strong>aumenta en 0.0015
+puntos</strong>. (relación directa).</p></li>
+</ul>
+<p><strong>OJO: La ecuación de la recta debe incluir TODAS las variables
+analizadas, tengan o no una influencia significativa en la
+VD.</strong></p>
+<p>¿Qué sucede si retiro las variables independientes que no aportan al
+modelo 1? Veamos un segundo modelo 👀 .</p>
+</div>
+</div>
+<div id="modelo-2" class="section level2">
+<h2><strong>Modelo 2</strong></h2>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+
+modelo2 = lm(accesoInformacion ~Capital_Humano  +Telecommunicacion_Infrastructura+ProcesoElectoral+ Policulture +UsuariosInternet   ,data=Egov)
+summary(modelo2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = accesoInformacion ~ Capital_Humano + Telecommunicacion_Infrastructura + 
+##     ProcesoElectoral + Policulture + UsuariosInternet, data = Egov)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.205352 -0.037077  0.002991  0.035621  0.111936 
+## 
+## Coefficients:
+##                                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                      -0.1220640  0.0262044  -4.658 8.15e-06 ***
+## Capital_Humano                    0.2884448  0.0538523   5.356 4.02e-07 ***
+## Telecommunicacion_Infrastructura  0.3513669  0.0774659   4.536 1.34e-05 ***
+## ProcesoElectoral                  0.0075854  0.0018682   4.060 8.66e-05 ***
+## Policulture                       0.0145801  0.0042686   3.416 0.000863 ***
+## UsuariosInternet                  0.0016876  0.0006405   2.635 0.009498 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.06163 on 123 degrees of freedom
+## Multiple R-squared:  0.9255, Adjusted R-squared:  0.9225 
+## F-statistic: 305.8 on 5 and 123 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="interpretamos-1" class="section level2">
+<h2><strong>Interpretamos </strong></h2>
+<div id="el-modelo-es-válido-1" class="section level3">
+<h3><strong>¿El modelo es válido?</strong></h3>
+<p>Establezcamos nuestras hipótesis:</p>
+<ul>
+<li>H0: El modelo de regresión no es válido</li>
+<li>H1: El modelo de regresión es válido (las variables independientes
+aportan al modelo)</li>
+</ul>
+<p>Luego nos fijamos en el <strong>p-value</strong> Como el p valor es
+&lt; 2.2e-16 entonces podemos afirmar que hay suficiente evidencia para
+rechazar la H0, por lo que concluimos que el modelo sí es válido como
+modelo de predicción.</p>
+</div>
+<div id="qué-tanto-explica-el-modelo-1" class="section level3">
+<h3><strong>¿Qué tanto explica el modelo?</strong></h3>
+<p>Observamos el <strong>R2 ajustado</strong>.</p>
+<p>Analizar cuánto de la variabilidad de la variable dependiente (y) es
+explicada por las variables independientes elegidas, para ello revisamos
+el R2 (Adjusted R-squared).</p>
+<p>En nuestro modelo, este arrojó el valor de 0.9225, por lo que podemos
+concluir mi modelo explica aproximadamente el 92.25% (0.9225*100) de la
+variabilidad en el acceso a la información (variable dependiente). E</p>
+</div>
+<div id="las-variables-aportan-al-modelo-1" class="section level3">
+<h3><strong>¿Las variables aportan al modelo?</strong></h3>
+<p>Revisamos <strong>p-value</strong> por cada variable
+independiente.</p>
+<ul>
+<li>Esperamos obtener un p-value &lt;0.05.</li>
+<li><em>Todas</em> las variables independientes aportan al modelo.</li>
+</ul>
+</div>
+<div id="cuáles-son-los-coeficientes-de-la-ecuación-1"
+class="section level3">
+<h3><strong>¿Cuáles son los coeficientes de la ecuación?</strong></h3>
+<pre class="r"><code>modelo2$coefficients</code></pre>
+<pre><code>##                      (Intercept)                   Capital_Humano 
+##                     -0.122063970                      0.288444800 
+## Telecommunicacion_Infrastructura                 ProcesoElectoral 
+##                      0.351366905                      0.007585449 
+##                      Policulture                 UsuariosInternet 
+##                      0.014580126                      0.001687594</code></pre>
+<p>De esa manera puedo hallar la ecuación:</p>
+<p><span class="math display">\[
+Y = -0.12 + \text{Capital\_Humano} \times (0.288) +
+\text{Telecommunicacion\_Infrastructura} \times (0.35) +
+\text{ProcesoElectoral} \times (0.00758) + \text{Policulture} \times
+(0.0145) + \text{UsuariosInternet} \times (0.0016)
+\]</span> En este modelo, las variables se interpretan de la siguiente
+manera:</p>
+<ul>
+<li><p>Por cada unidad adicional de puntaje en Capital Humano, el índice
+de acceso a la información <strong>aumenta en 0.288 puntos</strong>
+(relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de telecomunicaciones e
+infraestructura, el índice de acceso a la información <strong>aumenta en
+0.35 puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de Procesos Electorales, el
+índice de acceso a la información <strong>aumenta en 0.00758
+puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de Cultura política, el
+índice de acceso a la información <strong>aumenta en 0.0145
+puntos</strong>. (relación directa).</p></li>
+<li><p>Por cada unidad adicional de puntaje de acceso de Usuarios a
+Internet, el índice de acceso a la información <strong>aumenta en 0.0016
+puntos</strong>. (relación directa).</p></li>
+</ul>
+<p>¿Mi modelo ha mejorado?</p>
+<p>Ligeramente, mientras que el modelo 1 explicaba un 92.17% y el modelo
+2 92.25%. A pesar de que mi modelo 1 tiene un rango de explicación alto,
+con el modelo 2 se ha podido demostrar que el modelo puede mejorar (así
+la mejora no ha haya sido sustancial).</p>
+<p>También es importante notar que los coeficientes estimados de las VI
+han cambiado.</p>
+</div>
+<div id="predicción" class="section level3">
+<h3><strong>Predicción</strong></h3>
+<p>¿Cuál sería el índice de acceso a la información si reemplazamos el
+puntaje de cada variable independiente con su respectivo promedio?</p>
+<pre class="r"><code>Egov %&gt;%
+  summarise(mean(Capital_Humano, na.rm=T), mean(Telecommunicacion_Infrastructura, na.rm=T), 
+            mean(ProcesoElectoral, na.rm=T), mean(Policulture, na.rm=T), mean(UsuariosInternet, na.rm=T))</code></pre>
+<pre><code>##   mean(Capital_Humano, na.rm = T) mean(Telecommunicacion_Infrastructura, na.rm = T)
+## 1                       0.6419609                                         0.3801159
+##   mean(ProcesoElectoral, na.rm = T) mean(Policulture, na.rm = T)
+## 1                          6.167907                     5.734264
+##   mean(UsuariosInternet, na.rm = T)
+## 1                          49.65271</code></pre>
+<p><strong>Y = -0.12 + 0.29(0.64) + 0.35(0.38) + 0.01 (6.17) + 0.01
+(5.73) + 0.002(49.65)</strong></p>
+<p><strong>Y = -0.12 + 0.186 + 0.133 + 0.062 + 0.057 +
+0.099</strong></p>
+<p><strong>Y = 0.417</strong></p>
+<pre class="r"><code>predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.38, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))</code></pre>
+<pre><code>##         1 
+## 0.4101955</code></pre>
+<p>En conclusión, para valores promedio de las variables independientes,
+el índice de acceso a la información es de <strong>0.41</strong>
+puntos.</p>
+<p>¿Qué pasa si queremos predecir el índice de acceso a la información
+para diferentes valores de una variable independiente?</p>
+<p>En este caso, se puede reemplazar dejando las otras variables en el
+promedio. Por ejemplo, se quiere calcular el índice de acceso a la
+información para diferentes valores de la telecomunicación e
+infraestuctura. Lo primero es calcular los valores a reemplazar. En este
+caso usaremos el mínimo, la mediana y el máximo.</p>
+<pre class="r"><code>Egov %&gt;%
+  summarise(min(Telecommunicacion_Infrastructura, na.rm=T), 
+            median(Telecommunicacion_Infrastructura, na.rm=T), max(Telecommunicacion_Infrastructura, na.rm=T))</code></pre>
+<pre><code>##   min(Telecommunicacion_Infrastructura, na.rm = T)
+## 1                                                0
+##   median(Telecommunicacion_Infrastructura, na.rm = T)
+## 1                                             0.34584
+##   max(Telecommunicacion_Infrastructura, na.rm = T)
+## 1                                          0.84141</code></pre>
+<p>Luego, podemos reemplazar estos diferentes valores de
+telecomunicaciones e infraestructura, dejando las otras dos variables
+constantes en el promedio.</p>
+<p>Usando el mínimo:</p>
+<pre class="r"><code>predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))</code></pre>
+<pre><code>##         1 
+## 0.2766761</code></pre>
+<p>Usando la mediana:</p>
+<pre class="r"><code>predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.35, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))</code></pre>
+<pre><code>##         1 
+## 0.3996545</code></pre>
+<p>Usando el máximo:</p>
+<pre class="r"><code>predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.84, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))</code></pre>
+<pre><code>##         1 
+## 0.5718243</code></pre>
+</div>
+<div id="qué-variable-aporta-más" class="section level3">
+<h3><strong>¿Qué variable aporta más?</strong></h3>
+<p>Para interpretar cómo cada variable independiente contribuye a la
+variabilidad de la variable dependiente (accesoInformacion), podemos
+usar los coeficientes estandarizados. Estos coeficientes nos ayudan a
+comparar, en una misma escala, el impacto que tiene cada variable
+independiente sobre la variable dependiente, permitiéndonos identificar
+cuáles tienen un efecto más fuerte.</p>
+<p><strong>IMPORTANTE:</strong> Los coeficientes estandarizados solo
+sirven para evaluar y analizar qué variable aporta más. La ecuación de
+la recta se debe realizar con los coeficientes estimados.</p>
+<pre class="r"><code>library(jtools)
+summ(modelo2, scale=T)</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Observations
+</td>
+<td style="text-align:right;">
+129
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Dependent variable
+</td>
+<td style="text-align:right;">
+accesoInformacion
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Type
+</td>
+<td style="text-align:right;">
+OLS linear regression
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+F(5,123)
+</td>
+<td style="text-align:right;">
+305.76
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+R²
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Adj. R²
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Est.
+</th>
+<th style="text-align:right;">
+S.E.
+</th>
+<th style="text-align:right;">
+t val.
+</th>
+<th style="text-align:right;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+75.72
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Capital_Humano
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+5.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Telecommunicacion_Infrastructura
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+4.54
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+ProcesoElectoral
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+4.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Policulture
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+3.42
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+UsuariosInternet
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+2.63
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS; Continuous predictors are
+mean-centered and scaled by 1 s.d. The outcome variable remains in its
+original units.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Los resultados anteriores nos demuestran que las variables con mayor
+impacto son Telecommunicacion_Infrastructura (0.08) y Capital_Humano
+(0.06)</p>
+<pre class="r"><code>plot_summs(modelo2, scale = T)</code></pre>
+<p><img src="semana11_practica_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="ejercicio-para-clase" class="section level1">
+<h1>Ejercicio para clase</h1>
+<p>Utiliza la base fsi_democracy.xlsx y crea un modelo de regresión
+múltiple para analizar el impacto de las distintas variables en la
+Fragilidad del Estado (Total).</p>
+<p>En este caso, las variables independientes que usaremos para predecir
+la Fragilidad del Estado serán: Aparato_seguridad Economia
+Servicios_publicos Intervencion_externa</p>
+<p>Predice la Fragilidad de un Estado que usando valores significativos
+para cada variable independiente.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

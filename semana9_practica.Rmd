@@ -1,22 +1,15 @@
 ---
-title: "Práctica dirigida 7"
-output:
-  html_document:
-    toc: yes
-    toc_float: yes
-    collapsed: no
-    number_sections: no
-    toc_depth: 2
-    theme: cosmo
-    highlight: textmate
-    always_allow_html: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '2'
+title: "Práctica Dirigida 7"
+output: html_document
 editor_options: 
   markdown: 
-    wrap: sentence
+    wrap: 72
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 
 **FACULTAD DE CIENCIAS SOCIALES - PUCP**<br>
 
@@ -66,10 +59,10 @@ La correlación es en esencia una medida normalizada de asociación o covariaci�
 }
 </style>
 ```
-::: custom-text
-¿Cómo se relaciona la percepción de corrupción con los indicadores de democracia de los países?
-🤔
-:::
+
+
+*¿Cómo se relaciona la percepción de corrupción con los indicadores de democracia de los países?*
+
 
 Para la sesión de hoy trabajaremos con una base de datos que contiene variables obtenidas de las siguientes bases: - Freedom in the World - V-Dem - Democracy Index - Global Corruption Barometer
 

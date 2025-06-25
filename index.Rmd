@@ -6,8 +6,6 @@ output:
     css: styles.css  # Archivo de estilos
 ---
 
-![](portada.png)
-
 ¡Hola a [tod\@s](mailto:tod@s){.email}!,
 
 Antes de empezar, quiero darles la bievenida al curso "Estadística para el Análisis Político 1". Mi objetivo es que vean la estadística como una herramienta poderosa para entender la complejidad del mundo, analizar datos y tomar mejores decisiones.

@@ -1,0 +1,280 @@
+---
+title: "Práctica Dirigida 9"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+**FACULTAD DE CIENCIAS SOCIALES - PUCP**<br>
+
+## Curso: POL 278 - Estadística para el análisis político 1 \| Semestre 2025 - 1 <br>
+
+------------------------------------------------------------------------
+
+# **Regresión lineal múltiple**
+
+Hasta el momento, nos hemos encontrado en el campo del análisis bivariado. Sin embargo, en el mundo social, difícilmente se pueden explicar los fenómenos de interés con una sola variable. Incluso si nos interesa evaluar el efecto de un a variable en específico sobre un fenómeno de estudio, hay muchos otros factores que podrían influir en aquello que nos interesa explorar. Por ello, necesitamos recurrir al **análisis multivariado** y conocer el concepto de **control estadístico**. 
+
+El control estadístico nos permite aislar el efecto de otras variables. La idea es:
+
+* Evaluar si la asociación entre X e Y permanece si se remueve el efecto de otra variable, es decir, si se controla por una tercera variable.
+
+* Se analiza la relación entre X e Y para valores similares o iguales de una variable Z. De esta manera se elimina la influencia de Z en la relación entre X e Y. Lo anterior nos ayuda a acercarnos a una interpretación causar X -> Y.
+
+* Si la relación entre X e Y desaparece cuando se controla por Z, se dice que la relación era espúrea. En otras palabras, la relación dependendia de la influencia de Z y no de una conexión directa entre X e Y.  
+
+
+# Aplicación práctica
+
+## **Factores que determinan el acceso a la información en los Estados**
+
+El acceso a la información es fundamental para el funcionamiento de cualquier Estado democrático, ya que promueve la transparencia, la responsabilidad y la participación ciudadana. 
+
+Para poder realizar el análisis se han revisado las siguientes fuentes:
+
+**Digital Access Index** El Índice de Acceso Digital es utilizado para medir y evaluar el nivel de acceso a las tecnologías digitales y a internet. Proporciona una medida de hasta qué punto las personas y las comunidades pueden utilizar y beneficiarse de las tecnologías digitales.
+
+**Egov-index** El Índice de Gobierno Electrónico es una medida que evalúa el nivel de desarrollo y adopción de tecnologías de la información y la comunicación (TIC) en el sector público. Este índice se utiliza para medir la capacidad de los gobiernos para proporcionar servicios en línea, promover la participación ciudadana y utilizar las TIC de manera efectiva en la gestión gubernamental.
+
+**Democracy Index** El Índice de Democracia es un índice que mide el estado de la democracia en países de todo el mundo. Es elaborado por The Economist (EIU) y evalúa el funcionamiento de los procesos e instituciones democráticas.
+
+A partir de la información recolectada se ha creado una base de datos llamada Egov, la cual se compone de diversos índices. Vamos a utilizar los siguientes:
+
+- accesoInformacion: índice de acceso a la información del país.
+- participaciónDigital: índice de participación digital de la población del país.
+- Servicios_Online: índice de calidad de servicios en línea del país.
+- Capital Humano: índice de capital humano de la población del país.
+- Telecommunicacion_Infraestructura: índice de infraestructura de las comunicaciones del país.
+- ProcesoElectoral: índice de transparencia del proceso electoral.
+- Policulture: índice de tolerancia a la pluralidad en un país.
+- UsuariosInternet: porcentaje de población que utiliza internet en un país.
+
+
+```{r}
+library(rio)
+Egov=import("EGov.xlsx")
+names(Egov)
+```
+
+**No olviden el análisis descriptivo antes de hacer los modelos.**
+
+## **Modelo 1**
+
+```{r}
+library(tidyverse)
+
+modelo1 = lm(accesoInformacion ~participaciónDigital+Servicios_Online+Capital_Humano  +Telecommunicacion_Infrastructura+ProcesoElectoral+ Policulture +UsuariosInternet ,data=Egov)
+summary(modelo1)
+```
+
+## **Interpretamos**
+
+### **¿El modelo es válido?**
+
+Establezcamos nuestras hipótesis:
+
+-   H0: El modelo de regresión no es válido
+-   H1: El modelo de regresión es válido (las variables independientes aportan al modelo)
+
+Luego nos fijamos en el **p-value** Como el p valor es \< 2.2e-16 entonces podemos afirmar que hay suficiente evidencia para rechazar la H0, por lo que concluimos que el modelo es válido como modelo de predicción.
+
+### **¿Qué tanto explica el modelo?**
+
+Observamos el **R2 ajustado**.
+
+Analizar cuánto de la variabilidad de la variable dependiente (y) es explicada por las variables independientes elegidas, para ello revisamos el R2 (Adjusted R-squared, por ser un modelo lineal múltiple). 
+
+En nuestro modelo, este arrojó el valor de 0.9217, por lo que podemos concluir que el modelo explica aproximadamente el 92.2% (0.9217\*100) de la variabilidad en el acceso a la información (variable dependiente). En otras palabras, este valor alto de R cuadrado ajustado indica que el modelo se ajusta muy bien a los datos y hace un buen trabajo al explicar la relación entre las variables independientes y la variable dependiente. Sin embargo, el valor del R cuadrado ajustado no te dice nada sobre la significancia estadística de las variables individuales, ni sobre la causalidad. Por ello analizaremos también las variables de forma independiente en el siguiente paso.
+
+*Recordemos que el R cuadrado puede tomar valores entre 0 y 1. Un R cuadrado de 1 indica que el modelo explica toda la variabilidad de la variable Y. Un R cuadrado de 0 indica que el modelo no explica nada de la variabilidad de la variable Y.*
+
+### **¿Las variables aportan al modelo?**
+
+Revisamos **p-value** por cada variable independiente.
+
+-   Esperamos obtener un p-value \<0.05.
+-   Nos damos cuenta que *no todas* las variables independientes tienen un p-value \<0.05, es el caso de: participaciónDigital y Servicios_Online
+
+### **¿Cuáles son los coeficientes de la ecuación?**
+
+Podemos obtener extraer los coeficientes del modelo: 
+
+*No olvidar identificar el signo de cada coeficiente, este tendrá repercusión en la ecuación y su futura aplicación*
+
+```{r}
+modelo1$coefficients
+```
+
+De esa manera puedo hallar la ecuación:
+
+$$
+Y = -0.12 + \text{participaciónDigital} \times (-0.078) + \text{Servicios\_Online} \times (0.080) + \text{Capital\_Humano} \times (0.29) + \text{Telecommunicacion\_Infrastructura} \times (0.35) + \text{ProcesoElectoral} \times (0.0075) + \text{Policulture} \times (0.013) + \text{UsuariosInternet} \times (0.0015)
+$$
+
+Es decir, se tienen las siguientes relaciones entre VD y las VI:
+
+- Por cada unidad adicional de puntaje en participación digital, el índice de acceso a la información **disminuye en 0.078 puntos** (relación inversa).
+
+- Por cada unidad adicional de puntaje de servicios online, el índice de acceso a la información **aumenta en 0.08 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje en Capital Humano, el índice de acceso a la información **aumenta en 0.08 puntos** (relación directa).
+
+- Por cada unidad adicional de puntaje de telecomunicaciones e infraestructura, el índice de acceso a la información **aumenta en 0.35 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de Procesos Electorales, el índice de acceso a la información **aumenta en 0.0075 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de Cultura política, el índice de acceso a la información **aumenta en 0.013 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de acceso de Usuarios a Internet, el índice de acceso a la información **aumenta en 0.0015 puntos**. (relación directa).
+
+**OJO: La ecuación de la recta debe incluir TODAS las variables analizadas, tengan o no una influencia significativa en la VD.**
+
+¿Qué sucede si retiro las variables independientes que no aportan al modelo 1? Veamos un segundo modelo 👀 .
+
+## **Modelo 2**
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+modelo2 = lm(accesoInformacion ~Capital_Humano  +Telecommunicacion_Infrastructura+ProcesoElectoral+ Policulture +UsuariosInternet   ,data=Egov)
+summary(modelo2)
+```
+
+## **Interpretamos **
+
+### **¿El modelo es válido?**
+
+Establezcamos nuestras hipótesis:
+
+-   H0: El modelo de regresión no es válido
+-   H1: El modelo de regresión es válido (las variables independientes aportan al modelo)
+
+Luego nos fijamos en el **p-value** Como el p valor es \< 2.2e-16 entonces podemos afirmar que hay suficiente evidencia para rechazar la H0, por lo que concluimos que el modelo sí es válido como modelo de predicción. 
+
+### **¿Qué tanto explica el modelo?**
+
+Observamos el **R2 ajustado**.
+
+Analizar cuánto de la variabilidad de la variable dependiente (y) es explicada por las variables independientes elegidas, para ello revisamos el R2 (Adjusted R-squared).
+
+En nuestro modelo, este arrojó el valor de 0.9225, por lo que podemos concluir mi modelo explica aproximadamente el 92.25% (0.9225\*100) de la variabilidad en el acceso a la información (variable dependiente). E
+
+### **¿Las variables aportan al modelo?**
+
+Revisamos **p-value** por cada variable independiente.
+
+-   Esperamos obtener un p-value \<0.05.
+-   *Todas* las variables independientes aportan al modelo.
+
+### **¿Cuáles son los coeficientes de la ecuación?**
+
+```{r}
+modelo2$coefficients
+```
+
+De esa manera puedo hallar la ecuación:
+
+$$
+Y = -0.12 + \text{Capital\_Humano} \times (0.288) + \text{Telecommunicacion\_Infrastructura} \times (0.35) + \text{ProcesoElectoral} \times (0.00758) + \text{Policulture} \times (0.0145) + \text{UsuariosInternet} \times (0.0016)
+$$
+En este modelo, las variables se interpretan de la siguiente manera:
+
+- Por cada unidad adicional de puntaje en Capital Humano, el índice de acceso a la información **aumenta en 0.288 puntos** (relación directa).
+
+- Por cada unidad adicional de puntaje de telecomunicaciones e infraestructura, el índice de acceso a la información **aumenta en 0.35 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de Procesos Electorales, el índice de acceso a la información **aumenta en 0.00758 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de Cultura política, el índice de acceso a la información **aumenta en 0.0145 puntos**. (relación directa).
+
+- Por cada unidad adicional de puntaje de acceso de Usuarios a Internet, el índice de acceso a la información **aumenta en 0.0016 puntos**. (relación directa).
+
+¿Mi modelo ha mejorado?
+
+Ligeramente, mientras que el modelo 1 explicaba un 92.17% y el modelo 2 92.25%. A pesar de que mi modelo 1 tiene un rango de explicación alto, con el modelo 2 se ha podido demostrar que el modelo puede mejorar (así la mejora no ha haya sido sustancial).
+
+También es importante notar que los coeficientes estimados de las VI han cambiado.
+
+### **Predicción**
+
+¿Cuál sería el índice de acceso a la información si reemplazamos el puntaje de cada variable independiente con su respectivo promedio? 
+
+```{r}
+Egov %>%
+  summarise(mean(Capital_Humano, na.rm=T), mean(Telecommunicacion_Infrastructura, na.rm=T), 
+            mean(ProcesoElectoral, na.rm=T), mean(Policulture, na.rm=T), mean(UsuariosInternet, na.rm=T))
+```
+
+
+**Y = -0.12 + 0.29(0.64) + 0.35(0.38) + 0.01 (6.17) + 0.01 (5.73) + 0.002(49.65)**
+
+**Y = -0.12 + 0.186 + 0.133 + 0.062 + 0.057 + 0.099**
+
+**Y = 0.417**
+
+```{r}
+predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.38, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))
+```
+
+En conclusión, para valores promedio de las variables independientes, el índice de acceso a la información es de **0.41** puntos.
+
+¿Qué pasa si queremos predecir el índice de acceso a la información para diferentes valores de una variable independiente?
+
+En este caso, se puede reemplazar dejando las otras variables en el promedio. Por ejemplo, se quiere calcular el índice de acceso a la información para diferentes valores de la telecomunicación e infraestuctura. Lo primero es calcular los valores a reemplazar. En este caso usaremos el mínimo, la mediana y el máximo.
+
+```{r}
+Egov %>%
+  summarise(min(Telecommunicacion_Infrastructura, na.rm=T), 
+            median(Telecommunicacion_Infrastructura, na.rm=T), max(Telecommunicacion_Infrastructura, na.rm=T))
+```
+Luego, podemos reemplazar estos diferentes valores de telecomunicaciones e infraestructura, dejando las otras dos variables constantes en el promedio.
+
+Usando el mínimo:
+```{r}
+predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))
+```
+
+Usando la mediana:
+```{r}
+predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.35, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))
+```
+
+Usando el máximo:
+```{r}
+predict(modelo2, data.frame(Capital_Humano = 0.64, Telecommunicacion_Infrastructura = 0.84, ProcesoElectoral = 6.17, Policulture = 5.73, UsuariosInternet = 49.65))
+```
+
+### **¿Qué variable aporta más?**
+
+Para interpretar cómo cada variable independiente contribuye a la variabilidad de la variable dependiente (accesoInformacion), podemos usar los coeficientes estandarizados. Estos coeficientes nos ayudan a comparar, en una misma escala, el impacto que tiene cada variable independiente sobre la variable dependiente, permitiéndonos identificar cuáles tienen un efecto más fuerte.
+
+**IMPORTANTE:** Los coeficientes estandarizados solo sirven para evaluar y analizar qué variable aporta más. La ecuación de la recta se debe realizar con los coeficientes estimados.
+
+```{r}
+library(jtools)
+summ(modelo2, scale=T)
+```
+Los resultados anteriores nos demuestran que las variables con mayor impacto son Telecommunicacion_Infrastructura (0.08) y Capital_Humano (0.06)
+
+```{r}
+plot_summs(modelo2, scale = T)
+```
+
+# Ejercicio para clase
+
+Utiliza la base fsi_democracy.xlsx y crea un modelo de regresión múltiple para analizar el impacto de las distintas variables en la Fragilidad del Estado (Total). 
+
+En este caso, las variables independientes que usaremos para predecir la Fragilidad del Estado serán:
+Aparato_seguridad 
+Economia
+Servicios_publicos
+Intervencion_externa
+
+Predice la Fragilidad de un Estado que usando valores significativos para cada variable independiente. 

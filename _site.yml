@@ -59,11 +59,20 @@ navbar:
       - text: "Práctica Dirigida"
         href: semana8_practica.html
         
-        
     - text: "Semana 10"
       menu:
       - text: "Práctica Dirigida"
         href: semana9_practica.html
+
+    - text: "Semana 11"
+      menu:
+      - text: "Práctica Dirigida"
+        href: semana10_practica.html
+
+    - text: "Semana 12"
+      menu:
+      - text: "Práctica Dirigida"
+        href: semana11_practica.html
 
 output:
   html_document:
